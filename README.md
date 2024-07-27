@@ -163,7 +163,7 @@ The output for which was
 
 ```bash
 dmesg |grep -i Bluetooth
-```bash
+```
 
 Should show us
 
