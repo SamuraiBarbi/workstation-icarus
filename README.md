@@ -311,7 +311,7 @@ Next we plug the bus ids ( xxxx:xxxx ) of the devices we want to pass to our vir
 sudo nano /etc/default/grub
 ```
 
-In this file we'll update the `GRUB_CMDLINE_LINUX_DEFAULT` line to the following. We use `amd_iommu=on` to enable AMD's IOMMU (Input/Output Memory Management Unit), `amd_iommu=pt' to enable IOMMU pass-through mode, `vfio_pci.ids` for the specified device bus ids to be bound to the VFIO-PCI driver at boot, and `kvm.ignore_msrs=1` to tell KVM (Kernel-based Virtual Machine) to ignore unhandled Model Specific Registers access.
+In this file we'll update the `GRUB_CMDLINE_LINUX_DEFAULT` line to the following. We use `amd_iommu=on` to enable AMD's IOMMU (Input/Output Memory Management Unit), `amd_iommu=pt` to enable IOMMU pass-through mode, `vfio_pci.ids` for the specified device bus ids to be bound to the VFIO-PCI driver at boot, and `kvm.ignore_msrs=1` to tell KVM (Kernel-based Virtual Machine) to ignore unhandled Model Specific Registers access.
 
     GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amd_iommu=on amd_iommu=pt vfio_pci.ids=10de:1b06,10de:10ef,1102:0010 kvm.ignore_msrs=1"
 
