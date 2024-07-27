@@ -20,7 +20,7 @@ If these things also generally interest you, then my particular setup may be som
 Additional notes: If you are intending on playing Battlefield games or any games which use Punk Buster, make sure that once you've completed all of this you go to the Punk Buster website, download and install the Punk Buster service, and run the Punk Buster Setup for any games you intend on playing. If you do not do this you may end up getting kicked by multiplayer servers running Punk Buster.
 
 
-*** PHYSICAL MACHINE:
+**PHYSICAL MACHINE:**
 Preparing the motherboard
 In Bios go to Advanced Mode
     In OC ->  Advanced CPU configuration -> AMD CBS  -> IMMOU Mode, set this to Enabled
@@ -34,7 +34,7 @@ In Bios go to Advanced Mode
 
 Hit F10 to bring up save menu, and select yes
 
-*** LINUX HOST:
+**LINUX HOST:**
 Choose your distro, get it installed and updated.
 
 Let's get our applications and networked shares set up.
