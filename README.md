@@ -99,6 +99,8 @@ Restart the machine for the changes to take effect and the shares to be auto mou
 sudo reboot now
 ```
 
+#### Installing Nvidia Drivers
+
 We need to make sure that we open **Driver Manager** and **install the latest Nvidia drivers**. At the time of this writing nvidia-driver-535 was the latest.
 
 #### Installing Virt Manager
@@ -115,7 +117,7 @@ Now let's restart the system
 sudo reboot now
 ```
 
-#### Identifying IOMMU Groups and Bus IDS
+#### Identifying IOMMU Groups and PCI Device Bus IDS
 
 Now let's just verify that our host OS ready for virtualization by confirming IMMOU support, and AMD-Vi features are enabled.
 
@@ -301,7 +303,7 @@ lspci -nn | grep -i Audio
     2d:00.1 Audio device [0403]: NVIDIA Corporation GA102 High Definition Audio Controller [10de:1aef] (rev a1)
     2f:00.4 Audio device [0403]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse HD Audio Controller [1022:1487]
 
-#### Assigning Devices to VFIO
+#### Assigning PCI Devices to VFIO
 
 Next we plug the bus ids ( xxxx:xxxx ) of the devices we want to pass to our virtual machine into vfio_pci.ids= as a comma delimited list
 
@@ -357,6 +359,8 @@ Refresh the system so these changes take effect
 sudo reboot now
 ```
 
+#### Switching Drivers On the Fly Using DriverCTL
+
 After reboot we should be able to target the devices to switch drivers on the fly by using the following as examples
 
 *This command is tells the system to use the NVIDIA driver for the targetted GPU without saving the change permanently. This will make the targetted GPU available to the Linux host with Nvidia drivers, and unavailable to  the virtual machine. It will not work if you're using Nouveau drivers, only if you're using the proprietary Nvidia drivers.*
@@ -377,9 +381,16 @@ sudo driverctl --nosave set-override 0000:24:00.0 vfio-pci
 sudo driverctl --nosave set-override 0000:24:00.0 nouveau
 ```
 
-Now we need to get the names of our physical disks. In my case I have between 4 and 5 different SSDs. I'll run the following and copy the output to a text file for later reference
+#### Identifying Physical Disks and Disk Partitions
+
+Now we need to get the names of our physical disks. In my case I have between 4 and 5 different SSDs. I'll run the following and copy the output to a text file for later reference.
+
 ```bash
 ls -l /dev/disk/by-id/
+```
+
+*We should see output like the following:*
+
     lrwxrwxrwx 1 root root  9 Aug 27 08:47 ata-ASUS_DRW-24B1ST_i_E2D0CL027462 -> ../../sr0
     lrwxrwxrwx 1 root root  9 Aug 27 08:47 ata-SAMSUNG_SSD_830_Series_S0Z3NSACA01314 -> ../../sdb
     lrwxrwxrwx 1 root root 10 Aug 27 08:47 ata-SAMSUNG_SSD_830_Series_S0Z3NSACA01314-part1 -> ../../sdb1
@@ -412,40 +423,45 @@ ls -l /dev/disk/by-id/
     lrwxrwxrwx 1 root root 10 Aug 27 08:47 wwn-0x5002538e19901b2f-part1 -> ../../sda1
     lrwxrwxrwx 1 root root 10 Aug 27 08:47 wwn-0x5002538e19901b2f-part2 -> ../../sda2
     lrwxrwxrwx 1 root root 10 Aug 27 08:47 wwn-0x5002538e19901b2f-part3 -> ../../sda3
-```
 
 From the list we find the physical disk that we want to passthrough to the guest OS. In my case I'm going to be installing Windows 10 directly to the Samsung SSD 970 Pro, using the Samsung SSD 850 Pro for my video games and general storage, and the Samsung SSD 830 for Acronis backups of the Windows guest os drive.
-[cpde
+
     /dev/disk/by-id/nvme-Samsung_SSD_970_PRO_512GB_S5JYNS0N709889V
     /dev/disk/by-id/ata-Samsung_SSD_850_PRO_1TB_S3D2NX0HA09737Z
     /dev/disk/by-id/ata-SAMSUNG_SSD_830_Series_S0Z3NSACA01314
 
 Now we create the actual Virtual Machine itself in Virtual Machine Manager. This is a whole process in itself but to summarize, create the virtual machine and specify our Windows 10 installation media, typically an ISO so when the machine first boots we can start the installation process.
-vm name is theseus
-Memory (RAM): 65536
-Sound ich9: HDA (ICH9)
-Overview -> Hypervisor Details
-    Firmware: UEFI x86_64: /usr/share/OVMF/OVMF_CODE.fd
-    Chipset: i440FX
-Vritual Network Interface -> Network source
-    Virtual network 'default' : NAT
-Add Hardware -> Storage -> Select or Create Custom Storage
-    Manage: /dev/disk/by-id/nvme-Samsung_SSD_970_PRO_512GB_S5JYNS0N709889V
-    Device Type: Disk device
-    Bus type: SATA
-Add Hardware -> PCI Host Device
-    0000:01:00:0 NVIDIA Corporation GP102 [GeForce GTX 1080 Ti]
-Add Hardware -> PCI Host Device
-    0000:01:01:1 NVIDIA Corporation GP102 HDMI Audio Controller
-Add Hardware -> PCI Host Devices
-    0000:28:00:0 Intel Corporation Wi-Fi 6 AX200
-CPUs -> Configuration
-    Current Allocation: 24
-    Model: host-passthrough
 
-WINDOWS GUEST:
+#### Configurating Virtual Machine
+
+VM Name is theseus
+
+* Memory (RAM): 65536
+* Sound ich9: HDA (ICH9)
+* Overview -> Hypervisor Details
+    * Firmware: UEFI x86_64: /usr/share/OVMF/OVMF_CODE.fd
+    * Chipset: i440FX
+* Virtual Network Interface -> Network source
+    * Virtual network 'default' : NAT
+* Add Hardware -> Storage -> Select or Create Custom Storage
+    * Manage: /dev/disk/by-id/nvme-Samsung_SSD_970_PRO_512GB_S5JYNS0N709889V
+    * Device Type: Disk device
+    * Bus type: SATA
+* Add Hardware -> PCI Host Device
+    * 0000:01:00:0 NVIDIA Corporation GP102 [GeForce GTX 1080 Ti]
+* Add Hardware -> PCI Host Device
+    * 0000:01:01:1 NVIDIA Corporation GP102 HDMI Audio Controller
+* Add Hardware -> PCI Host Devices
+    * 0000:28:00:0 Intel Corporation Wi-Fi 6 AX200
+* CPUs -> Configuration
+    * Current Allocation: 24
+    * Model: host-passthrough
+
+### Configuring Windows Guest
+
+**WINDOWS GUEST:**
+
 Finish installation, and run updates. Now we need to download https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/virtio-win10-prewhql-0.1-161.zip and extract the contents, look in the Devices and Hardware for anything that's missing a driver, and install drivers from the location of the virtio-win10 folder that we extracted. Next in Devices and Hardware, look for PCI standard RAM Controller and update the drivers for this device with drivers from the virtio-win10 folder as well so that Windows will see IVSHMEM device.
 
 LINUX HOST:
 Make sure we install all of the various bits we'll need to build the Looking Glass client application.
-sudo nala install -y qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients virt-manager ovmf
