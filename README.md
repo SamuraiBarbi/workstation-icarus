@@ -19,6 +19,7 @@ If these things also generally interest you, then my particular setup may be som
 
 Additional notes: If you are intending on playing Battlefield games or any games which use Punk Buster, make sure that once you've completed all of this you go to the Punk Buster website, download and install the Punk Buster service, and run the Punk Buster Setup for any games you intend on playing. If you do not do this you may end up getting kicked by multiplayer servers running Punk Buster.
 
+### Configuring the BIOS
 
 **PHYSICAL MACHINE:**
 
@@ -43,6 +44,8 @@ In Bios go to Advanced Mode
 5. Hit **F10** to bring up save menu, and select **yes**
    
 	This will save your settings as you've configured them and reboot the machine.
+
+### Configuring the Linux Host
 
 **LINUX HOST:**
 
@@ -345,18 +348,23 @@ sudo reboot now
 
 After reboot we should be able to target the devices to switch drivers on the fly by using the following as examples
 
+*This command is tells the system to use the NVIDIA driver for the targetted GPU without saving the change permanently. This will make the targetted GPU available to the Linux host with Nvidia drivers, and unavailable to  the virtual machine. It will not work if you're using Nouveau drivers, only if you're using the proprietary Nvidia drivers.*
+
 ```bash
 sudo driverctl --nosave set-override 0000:24:00.0 nvidia
 ```
+
+*This command is tells the system to use vfio-pci for the targetted GPU without saving the change permanently. This will make the targetted GPU available to the virtual machine, and unavailable to the Linux host to use.*
+
 ```bash
 sudo driverctl --nosave set-override 0000:24:00.0 vfio-pci
 ```
+
+*This command is tells the system to use the Nouveau driver for the targetted GPU without saving the change permanently. This will make the targetted GPU available to the Linux host with Nouveau drivers, and unavailable to  the virtual machine. It will not work if you're using Nvidia drivers, only if you're using the Nouveau drivers.*
+
 ```bash
 sudo driverctl --nosave set-override 0000:24:00.0 nouveau
 ```
-
-
-
 
 Now we need to get the names of our physical disks. In my case I have between 4 and 5 different SSDs. I'll run the following and copy the output to a text file for later reference
 ```bash
