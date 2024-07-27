@@ -3,15 +3,15 @@ Install instructions for icarus-workstation
 
 First off I should say the following is not necessary for a majority of people with any interest in GPU passthrough from a Linux host to a Windows guest. I've done all of this because of my very particular requirements for an ideal workstation/general purpose PC.
 
-    Wanting to stay in a Linux environment at all times
-    Wanting to avoid dual boot since I don't want to have to shutdown Linux to switch to a Windows environment for gaming/streaming/content creation, or vice versa
-    Wanting to avoid multi-monitor setup entirely. I like only using a single monitor
-    Wanting to be able to have full use of GPU power in a Windows virtual machine for gaming
-    Wanting to have Windows still have enough CPU power to chew through anything I throw at it
-    Being able to easily access Windows environment while still inside of Linux environment
-    Wanting to avoid building/running multiple physical machines
-    Wanting to have hear sound from both the Linux host and Windows 10 guest at the same time
-    Wanting to feed my headset microphone input to both Linux host and Windows 10 guest at the same time
+> * Wanting to stay in a Linux environment at all times
+> * Wanting to avoid dual boot since I don't want to have to shutdown Linux to switch to a Windows environment for gaming/streaming/content creation, or vice versa
+> * Wanting to avoid multi-monitor setup entirely. I like only using a single monitor
+> * Wanting to be able to have full use of GPU power in a Windows virtual machine for gaming
+> * Wanting to have Windows still have enough CPU power to chew through anything I throw at it
+> * Being able to easily access Windows environment while still inside of Linux environment
+> * Wanting to avoid building/running multiple physical machines
+> * Wanting to have hear sound from both the Linux host and Windows 10 guest at the same time
+> * Wanting to feed my headset microphone input to both Linux host and Windows 10 guest at the same time
 
 
 If these things also generally interest you, then my particular setup may be something for you to adjust for your own needs. Just beware there is quite a bit of set up involved, and some high level degree of computer literacy involed, so this is not for the faint of heart.
