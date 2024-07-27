@@ -24,23 +24,23 @@ Additional notes: If you are intending on playing Battlefield games or any games
 
 Preparing the motherboard
 In Bios go to Advanced Mode
-1. In OC ->  Advanced CPU configuration -> AMD CBS  -> IMMOU Mode, set this to Enabled
+1. In **OC ->  Advanced CPU configuration -> AMD CBS  -> IMMOU Mode**, set this to **Enabled**
    
 	This will allow passthrough of hardware to virtualize guest operating systems
 
-2. In OC -> Advanced CPU configuration -> SVM Mode, set this to Enabled
+2. In **OC -> Advanced CPU configuration -> SVM Mode**, set this to **Enabled**
    
 	This will allow passthrough of hardware to virtualize guest operating systems
 
-3. In Settings -> Advanced -> Windows OS Configuration -> BIOS UEFI/CSM Mode, set this to UEFI
+3. In **Settings -> Advanced -> Windows OS Configuration -> BIOS UEFI/CSM Mode**, set this to **UEFI**
    
 	This will allow you to plug your display into the GPU that's in the second PCI-E slot of the motherboard and use it as your hosts primary GPU
    
-4. In Settings -> Advanced -> Integrated Peripherals -> VGA Card Detection, set this to Ignore
+4. In **Settings -> Advanced -> Integrated Peripherals -> VGA Card Detection**, set this to **Ignore**
    
 	This will allow you to use the secondary pci-e slotted GPU as the primary GPU for your host, rather than whatever is in the primary pcie-e slot
    
-5. Hit F10 to bring up save menu, and select yes
+5. Hit **F10** to bring up save menu, and select **yes**
    
 	This will save your settings as you've configured them and reboot the machine
 
