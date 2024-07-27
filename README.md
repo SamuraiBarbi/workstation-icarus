@@ -104,12 +104,6 @@ Now let's restart the system
 sudo reboot now
 ```
 
-
-
-
-
-
-
 Now let's just verify that our host OS ready for virtualization by confirming IMMOU support, and AMD-Vi features are enabled.
 
 ```bash
@@ -127,24 +121,52 @@ We should see something like the following returned
     [    1.207117] AMD-Vi: Lazy IO/TLB flushing enabled
 
 Now we need to get the bus ids of our video cards. In my case I'm using two Nvidia GPUs so I'll run the following and copy the output to a text file for later reference.
+
+```bash
 lspci -nn | grep VGA
+```
+The output for this will be something like
+
     24:00.0 VGA compatible controller [0300]: NVIDIA Corporation GP104 [GeForce GTX 1070] [10de:1b81] (rev a1)
     2d:00.0 VGA compatible controller [0300]: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] [10de:1b06] (rev a1)
 
 Now run lspci -nn | grep with the bus of the GPU you want to pass to the guest so we can obtain buses for any other devices associated with the GPU.
+
+```bash
 lspci -nn | grep 2d:00
+```
+
+This will output something like
+
     2d:00.0 VGA compatible controller [0300]: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] [10de:1b06] (rev a1)
     2d:00.1 Audio device [0403]: NVIDIA Corporation GP102 HDMI Audio Controller [10de:10ef] (rev a1)
 
 Now we need to get the bus id of the WI-FI device since we'd like to also passthrough the Bluetooth device and frequently the WI-FI and Bluetooth are a combo devices.
+
+```bash
 lspci -nn | grep -i WI-FI
+```
+
+Which will output
+
     28:00.0 Audio device [0403]: Creative Labs Device [1102:0010] (rev 01)
 
-I have a Sound Blaster AE-7 sound card that I purchased for the purpose of splitting my mic input so both my host and guest can receive the input from my headset. I'll pass that as well
+I have a Sound Blaster AE-7 sound card that I purchased for the purpose of splitting my mic input so both my host and guest can receive the input from my headset. I'll pass that as well.
+
+```bash
 lspci -nn | grep -i Audio
+```
+
+The output for which was 
+
     26:00.0 Multimedia audio controller: C-Media Electronics Inc CMI8738/CMI8768 PCI Audio (rev 10)
 
+```bash
 dmesg |grep -i Bluetooth
+```bash
+
+Should show us
+
     [    5.032245] Bluetooth: Core ver 2.22
     [    5.032267] Bluetooth: HCI device and connection manager initialized
     [    5.032272] Bluetooth: HCI socket layer initialized
@@ -166,8 +188,14 @@ dmesg |grep -i Bluetooth
     [17516.248946] Bluetooth: Unexpected start frame (len 83)
     [17705.073144] Bluetooth: Unexpected start frame (len 83)
 
-Now we need to determine the IOMMU groups for the GPU buses that we've isolated
+Now we need to determine the IOMMU groups for the GPU buses that we've isolated.
+
+```bash
 for a in /sys/kernel/iommu_groups/*; do find $a -type l; done | sort --version-sort
+```
+
+We get the following output
+
     /sys/kernel/iommu_groups/0/devices/0000:00:01.0
     /sys/kernel/iommu_groups/1/devices/0000:00:01.1
     /sys/kernel/iommu_groups/2/devices/0000:00:01.2
@@ -217,6 +245,7 @@ for a in /sys/kernel/iommu_groups/*; do find $a -type l; done | sort --version-s
     /sys/kernel/iommu_groups/31/devices/0000:2f:00.4
 
 From the list we find the IMMOU group by searching for the buses of the GPU we want to pass through.
+
     0000:2d:00.0
     0000:2d:00.1
 
