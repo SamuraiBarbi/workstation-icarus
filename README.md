@@ -99,12 +99,14 @@ Restart the machine for the changes to take effect and the shares to be auto mou
 sudo reboot now
 ```
 
+We need to make sure that we open **Driver Manager** and **install the latest Nvidia drivers**. At the time of this writing nvidia-driver-535 was the latest.
+
 #### Installing Virt Manager
 
 Let's get Virtual Machine Manager and QEMU related applications installed.
 
 ```bash
-sudo apt install qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients virt-manager ovmf
+sudo nala install driverctl qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients virt-manager ovmf
 ```
 
 Now let's restart the system
@@ -299,6 +301,8 @@ lspci -nn | grep -i Audio
     2d:00.1 Audio device [0403]: NVIDIA Corporation GA102 High Definition Audio Controller [10de:1aef] (rev a1)
     2f:00.4 Audio device [0403]: Advanced Micro Devices, Inc. [AMD] Starship/Matisse HD Audio Controller [1022:1487]
 
+#### Assigning Devices to VFIO
+
 Next we plug the bus ids ( xxxx:xxxx ) of the devices we want to pass to our virtual machine into vfio_pci.ids= as a comma delimited list
 
 ```bash
@@ -328,7 +332,6 @@ Then paste the following contents
 	vfio_pci
 	vfio_virqfd
 	vhost-net
-
 
 Now we plug the same bus ids ( xxxx:xxxx ) of the devices we want to pass to our virtual machine into vfio-pci ids= as a comma delimited list.
 
