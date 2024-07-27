@@ -375,7 +375,7 @@ sudo driverctl --nosave set-override 0000:24:00.0 nvidia
 sudo driverctl --nosave set-override 0000:24:00.0 vfio-pci
 ```
 
-*This command is tells the system to use the Nouveau driver for the targetted GPU without saving the change permanently. This will make the targetted GPU available to the Linux host with Nouveau drivers, and unavailable to  the virtual machine. It will not work if you're using Nvidia drivers, only if you're using the Nouveau drivers.*
+*This command is tells the system to use the Nouveau driver for the targetted GPU without saving the change permanently. This will make the targetted GPU available to the Linux host with Nouveau drivers, and unavailable to the virtual machine. It will not work if you're using Nvidia drivers, only if you're using the Nouveau drivers.*
 
 ```bash
 sudo driverctl --nosave set-override 0000:24:00.0 nouveau
