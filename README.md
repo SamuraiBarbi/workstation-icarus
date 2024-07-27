@@ -110,7 +110,7 @@ Now let's just verify that our host OS ready for virtualization by confirming IM
 dmesg | grep AMD-Vi
 ```
 
-We should see something like the following returned
+We should see something like the following returned:
 
     [    1.202200] pci 0000:00:00.2: AMD-Vi: IOMMU performance counters supported
     [    1.207028] pci 0000:00:00.2: AMD-Vi: Found IOMMU cap 0x40
@@ -125,7 +125,8 @@ Now we need to get the bus ids of our video cards. In my case I'm using two Nvid
 ```bash
 lspci -nn | grep VGA
 ```
-The output for this will be something like
+
+The output for this will be something like:
 
     24:00.0 VGA compatible controller [0300]: NVIDIA Corporation GP104 [GeForce GTX 1070] [10de:1b81] (rev a1)
     2d:00.0 VGA compatible controller [0300]: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] [10de:1b06] (rev a1)
@@ -136,7 +137,7 @@ Now run lspci -nn | grep with the bus of the GPU you want to pass to the guest s
 lspci -nn | grep 2d:00
 ```
 
-This will output something like
+This will output something like:
 
     2d:00.0 VGA compatible controller [0300]: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] [10de:1b06] (rev a1)
     2d:00.1 Audio device [0403]: NVIDIA Corporation GP102 HDMI Audio Controller [10de:10ef] (rev a1)
@@ -147,7 +148,7 @@ Now we need to get the bus id of the WI-FI device since we'd like to also passth
 lspci -nn | grep -i WI-FI
 ```
 
-Which will output
+Which will output:
 
     28:00.0 Audio device [0403]: Creative Labs Device [1102:0010] (rev 01)
 
@@ -157,7 +158,7 @@ I have a Sound Blaster AE-7 sound card that I purchased for the purpose of split
 lspci -nn | grep -i Audio
 ```
 
-The output for which was 
+The output for which was:
 
     26:00.0 Multimedia audio controller: C-Media Electronics Inc CMI8738/CMI8768 PCI Audio (rev 10)
 
@@ -165,7 +166,7 @@ The output for which was
 dmesg |grep -i Bluetooth
 ```
 
-Should show us
+Should show us:
 
     [    5.032245] Bluetooth: Core ver 2.22
     [    5.032267] Bluetooth: HCI device and connection manager initialized
@@ -188,13 +189,13 @@ Should show us
     [17516.248946] Bluetooth: Unexpected start frame (len 83)
     [17705.073144] Bluetooth: Unexpected start frame (len 83)
 
-Now we need to determine the IOMMU groups for the GPU buses that we've isolated.
+Now in terminal we need to determine the IOMMU groups for the GPU buses that we've isolated by running the following.
 
 ```bash
 for a in /sys/kernel/iommu_groups/*; do find $a -type l; done | sort --version-sort
 ```
 
-We get the following output
+We get the following output:
 
     /sys/kernel/iommu_groups/0/devices/0000:00:01.0
     /sys/kernel/iommu_groups/1/devices/0000:00:01.1
@@ -244,7 +245,7 @@ We get the following output
     /sys/kernel/iommu_groups/30/devices/0000:2f:00.3
     /sys/kernel/iommu_groups/31/devices/0000:2f:00.4
 
-From the list we find the IMMOU group by searching for the buses of the GPU we want to pass through.
+From the list we find the IMMOU group by searching for the buses of the GPU we want to pass through:
 
     0000:2d:00.0
     0000:2d:00.1
@@ -253,12 +254,19 @@ From the list we find the IMMOU group by searching for the buses of the GPU we w
     2d:00.1 Audio device [0403]: NVIDIA Corporation GA102 High Definition Audio Controller [10de:1aef] (rev a1)
 
 
-Additional IMMOU group for bus of the WI-FI / Bluetooth we want to pass through.
+Additional IMMOU group for bus of the WI-FI / Bluetooth we want to pass through which we should note:
+
     0000:28:00.0
 
 
-We're using the following command to get a list of nvidia devices
+We're using the following command to get a list of nvidia devices.
+
+```bash
 lspci -nnk | grep -i nvidia
+```
+
+The list of nvidia devices found is:
+
     24:00.0 VGA compatible controller [0300]: NVIDIA Corporation GP102 [GeForce GTX 1080 Ti] [10de:1b06] (rev a1)
 	    Kernel modules: nvidiafb, nouveau, nvidia_drm, nvidia
     24:00.1 Audio device [0403]: NVIDIA Corporation GP102 HDMI Audio Controller [10de:10ef] (rev a1)
@@ -267,8 +275,14 @@ lspci -nnk | grep -i nvidia
 	    Kernel modules: nvidiafb, nouveau, nvidia_drm, nvidia
     2d:00.1 Audio device [0403]: NVIDIA Corporation GA102 High Definition Audio Controller [10de:1aef] (rev a1)
 
-And the following command to get a list of audio devices
+And the following command to get a list of audio devices.
+
+```bash
 lspci -nn | grep -i Audio
+```
+
+The list of audio devices returned is:
+
     24:00.1 Audio device [0403]: NVIDIA Corporation GP102 HDMI Audio Controller [10de:10ef] (rev a1)
     28:00.0 Audio device [0403]: Creative Labs Device [1102:0010] (rev 01)
     2d:00.1 Audio device [0403]: NVIDIA Corporation GA102 High Definition Audio Controller [10de:1aef] (rev a1)
