@@ -111,16 +111,11 @@ sudo reboot now
 
 
 Now let's just verify that our host OS ready for virtualization by confirming IMMOU support, and AMD-Vi features are enabled.
+
 ```bash
 dmesg | grep AMD-Vi
-    [    1.202200] pci 0000:00:00.2: AMD-Vi: IOMMU performance counters supported
-    [    1.207028] pci 0000:00:00.2: AMD-Vi: Found IOMMU cap 0x40
-    [    1.207029] pci 0000:00:00.2: AMD-Vi: Extended features (0x58f77ef22294ade):
-    [    1.207031] AMD-Vi: Interrupt remapping enabled
-    [    1.207031] AMD-Vi: Virtual APIC enabled
-    [    1.207031] AMD-Vi: X2APIC enabled
-    [    1.207117] AMD-Vi: Lazy IO/TLB flushing enabled
 ```
+
 We should see something like the following returned
 
     [    1.202200] pci 0000:00:00.2: AMD-Vi: IOMMU performance counters supported
