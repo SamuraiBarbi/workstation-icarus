@@ -26,29 +26,30 @@ Preparing the motherboard
 In Bios go to Advanced Mode
 1. In **OC ->  Advanced CPU configuration -> AMD CBS  -> IMMOU Mode**, set this to **Enabled**
    
-	This will allow passthrough of hardware to virtualize guest operating systems
+	This will allow passthrough of hardware to virtualize guest operating systems.
 
 2. In **OC -> Advanced CPU configuration -> SVM Mode**, set this to **Enabled**
    
-	This will allow passthrough of hardware to virtualize guest operating systems
+	This will allow passthrough of hardware to virtualize guest operating systems.
 
 3. In **Settings -> Advanced -> Windows OS Configuration -> BIOS UEFI/CSM Mode**, set this to **UEFI**
    
-	This will allow you to plug your display into the GPU that's in the second PCI-E slot of the motherboard and use it as your hosts primary GPU
+	This will allow you to plug your display into the GPU that's in the second PCI-E slot of the motherboard and use it as your hosts primary GPU.
    
 4. In **Settings -> Advanced -> Integrated Peripherals -> VGA Card Detection**, set this to **Ignore**
    
-	This will allow you to use the secondary pci-e slotted GPU as the primary GPU for your host, rather than whatever is in the primary pcie-e slot
+	This will allow you to use the secondary pci-e slotted GPU as the primary GPU for your host, rather than whatever is in the primary pcie-e slot.
    
 5. Hit **F10** to bring up save menu, and select **yes**
    
-	This will save your settings as you've configured them and reboot the machine
+	This will save your settings as you've configured them and reboot the machine.
 
 **LINUX HOST:**
 
 Choose your distro, get it installed and updated.
 
 Let's get our applications and networked shares set up.
+
 ```bash
 sudo apt-get install nala
 sudo nala install nvtop
@@ -64,16 +65,21 @@ sudo nala install python3-pip
 ```
 
 Create the folders that the network shares will be mapped to
+
 ```bash
 sudo mkdir -p /home/owner/.mnt/media/.atlas.backup/
 sudo mkdir -p /home/owner/.mnt/media/.atlas.media-server/_downloads
 sudo mkdir -p /home/owner/.mnt/media/.atlas.media-server/_media
 ```
+
 Now add the networked shares to fstab so that they'll be mounted when we boot up
+
 ```bash
 sudo nano /etc/fstab
 ```
+
 Then we paste the contents at the end of the file
+
 ```bash
 10.10.10.200:/mnt/atlas-storage/atlas.backup/    /home/owner/.mnt/media/.atlas.backup/    nfs    auto,nofail,noatime,nolock,intr,proto=tcp,hard,actimeo=1800,port=2049    0    0
 10.10.10.200:/mnt/atlas-storage/atlas.media-server/_downloads/    /home/owner/.mnt/media/.atlas.media-server/_downloads/ nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
@@ -81,18 +87,19 @@ Then we paste the contents at the end of the file
 ```
 
 Restart the machine for the changes to take effect and the shares to be auto mounted
+
 ```bash
 sudo reboot now
 ```
 
-
-
-
 Let's get Virtual Machine Manager and QEMU related applications installed.
+
 ```bash
 sudo apt install qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients virt-manager ovmf
 ```
+
 Now let's restart the system
+
 ```bash
 sudo reboot now
 ```
@@ -104,7 +111,18 @@ sudo reboot now
 
 
 Now let's just verify that our host OS ready for virtualization by confirming IMMOU support, and AMD-Vi features are enabled.
+```bash
 dmesg | grep AMD-Vi
+    [    1.202200] pci 0000:00:00.2: AMD-Vi: IOMMU performance counters supported
+    [    1.207028] pci 0000:00:00.2: AMD-Vi: Found IOMMU cap 0x40
+    [    1.207029] pci 0000:00:00.2: AMD-Vi: Extended features (0x58f77ef22294ade):
+    [    1.207031] AMD-Vi: Interrupt remapping enabled
+    [    1.207031] AMD-Vi: Virtual APIC enabled
+    [    1.207031] AMD-Vi: X2APIC enabled
+    [    1.207117] AMD-Vi: Lazy IO/TLB flushing enabled
+```
+We should see something like the following returned
+
     [    1.202200] pci 0000:00:00.2: AMD-Vi: IOMMU performance counters supported
     [    1.207028] pci 0000:00:00.2: AMD-Vi: Found IOMMU cap 0x40
     [    1.207029] pci 0000:00:00.2: AMD-Vi: Extended features (0x58f77ef22294ade):
