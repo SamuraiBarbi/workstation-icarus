@@ -51,6 +51,8 @@ In Bios go to Advanced Mode
 
 Choose your distro, get it installed and updated.
 
+#### Install Common Applications
+
 Let's get our applications and networked shares set up.
 
 ```bash
@@ -66,6 +68,8 @@ sudo nala install ffmpeg
 sudo nala install python3.12 python3.12-venv python3.12-dev
 sudo nala install python3-pip
 ```
+
+#### Set Up Auto Mounting Network Shares
 
 Create the folders that the network shares will be mapped to
 
@@ -95,6 +99,8 @@ Restart the machine for the changes to take effect and the shares to be auto mou
 sudo reboot now
 ```
 
+#### Installing Virt Manager
+
 Let's get Virtual Machine Manager and QEMU related applications installed.
 
 ```bash
@@ -106,6 +112,8 @@ Now let's restart the system
 ```bash
 sudo reboot now
 ```
+
+#### Identifying IOMMU Groups and Bus IDS
 
 Now let's just verify that our host OS ready for virtualization by confirming IMMOU support, and AMD-Vi features are enabled.
 
@@ -297,7 +305,7 @@ Next we plug the bus ids ( xxxx:xxxx ) of the devices we want to pass to our vir
 sudo nano /etc/default/grub
 ```
 
-In this file we'll update the `GRUB_CMDLINE_LINUX_DEFAULT` line to the following
+In this file we'll update the `GRUB_CMDLINE_LINUX_DEFAULT` line to the following. We use `amd_iommu=on` to enable AMD's IOMMU (Input/Output Memory Management Unit), `amd_iommu=pt' to enable IOMMU pass-through mode, `vfio_pci.ids` for the specified device bus ids to be bound to the VFIO-PCI driver at boot, and `kvm.ignore_msrs=1` to tell KVM (Kernel-based Virtual Machine) to ignore unhandled Model Specific Registers access.
 
     GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amd_iommu=on amd_iommu=pt vfio_pci.ids=10de:1b06,10de:10ef,1102:0010 kvm.ignore_msrs=1"
 
