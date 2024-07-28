@@ -466,6 +466,56 @@ Finish installation, and run updates. Now we need to download https://fedorapeop
 LINUX HOST:
 Make sure we install all of the various bits we'll need to build the Looking Glass client application.
 
+Let's build the Looking Glass ( https://looking-glass.io/downloads ) client application ( looking-glass-client ) that will listen for the Windows guest video memory buffer. Once we've built it, the path to the client will be `/home/owner/.virtualmachine/LookingGlass/client/build/looking-glass-client`.
+
+```bash
+mkdir -p /home/owner/.virtualmachine/LookingGlass
+git clone --recursive https://github.com/gnif/LookingGlass.git /home/owner/.virtualmachine/LookingGlass
+cd /home/owner/.virtualmachine/LookingGlass
+mkdir -p client/build
+cd client/build
+cmake ../
+sudo make install
+```
+
+Now we need to make an update to QEMU for SHM for capturing the Looking Glass host video memory buffer.
+
+```bash
+touch /dev/shm/looking-glass
+sudo chown owner:kvm /dev/shm/looking-glass
+sudo chmod 660 /dev/shm/looking-glass
+```
+
+Let's build the Scream client application that will listen for the Windows guest audio over the virtual network bridge. Once we've built it, the path to the client will be `/home/owner/.virtualmachine/Scream/Receivers/unix/client/build/scream`
+
+```bash
+mkdir -p /home/owner/.virtualmachine/Scream
+git clone --recursive https://github.com/duncanthrax/scream.git /home/owner/.virtualmachine/Scream
+cd /home/owner/.virtualmachine/Scream/Receivers/unix
+mkdir -p client/build
+cd client/build
+cmake ../../
+sudo make install
+```
+
+Add the following to the contents of the libvirt-qemu file and restart apparmor.
+
+```bash
+sudo nano /etc/apparmor.d/abstractions/libvirt-qemu
+```
+
+Then we'll paste the contents
+
+    /{dev,run}/shm/ rw,
+    /{dev,run}/shm/* rw,
+
+Now we need to restart the apparmor service.
+
+```bash
+sudo systemctl restart apparmor
+```
+
+
 Open Virsh Manager
 * Click **Edit** and select **Preferences**
 * **Check** the box for **Enable XML editing**, click **Close**
@@ -481,7 +531,7 @@ Open Virsh Manager
 ```
 <domain type="kvm">
   <name>theseus</name>
-  <uuid>25cec0f7-1fb7-4435-a792-76c12de24ae1</uuid>
+  <uuid>7236d45b-72d5-41f5-b7b3-5a16cb2fc6eb</uuid>
   <metadata>
     <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
       <libosinfo:os id="http://microsoft.com/win/10"/>
