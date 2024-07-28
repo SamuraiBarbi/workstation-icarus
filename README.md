@@ -467,10 +467,319 @@ LINUX HOST:
 Make sure we install all of the various bits we'll need to build the Looking Glass client application.
 
 Open Virsh Manager
-
+* Click **Edit** and select **Preferences**
+* **Check** the box for **Enable XML editing**, click **Close**
 * Click **Create a New Virtual Machine**
 * Select **Manual Install**, click **Forward**
 * Enter **Microsoft Windows 10**, click **Forward**
 * For **Memory** enter **65536**, **CPUs** enter **24**, click **Forward**
 * **Uncheck** the box to disable **Enable storage for this virtual machine**, click **Forward**
 * **Name** enter **Theseus**, **check** the box to enable **Customize configuration before install**, click **Finish**
+* For the Theseus virtual machine click the **XML** tab, and copy the value of the xml `domain` -> `uuid` element. For example mine was `7236d45b-72d5-41f5-b7b3-5a16cb2fc6eb`
+* Replace the value for `domain` -> `uuid` element in the following with the value you copied
+
+  ```bash
+<domain type="kvm">
+  <name>theseus</name>
+  <uuid>25cec0f7-1fb7-4435-a792-76c12de24ae1</uuid>
+  <metadata>
+    <libosinfo:libosinfo xmlns:libosinfo="http://libosinfo.org/xmlns/libvirt/domain/1.0">
+      <libosinfo:os id="http://microsoft.com/win/10"/>
+    </libosinfo:libosinfo>
+  </metadata>
+  <memory unit="KiB">67108864</memory>
+  <currentMemory unit="KiB">67108864</currentMemory>
+  <vcpu placement="static">24</vcpu>
+  <cputune>
+    <vcpupin vcpu="0" cpuset="4"/>
+    <vcpupin vcpu="1" cpuset="20"/>
+    <vcpupin vcpu="2" cpuset="5"/>
+    <vcpupin vcpu="3" cpuset="21"/>
+    <vcpupin vcpu="4" cpuset="6"/>
+    <vcpupin vcpu="5" cpuset="22"/>
+    <vcpupin vcpu="6" cpuset="7"/>
+    <vcpupin vcpu="7" cpuset="23"/>
+    <vcpupin vcpu="8" cpuset="8"/>
+    <vcpupin vcpu="9" cpuset="24"/>
+    <vcpupin vcpu="10" cpuset="9"/>
+    <vcpupin vcpu="11" cpuset="25"/>
+    <vcpupin vcpu="12" cpuset="10"/>
+    <vcpupin vcpu="13" cpuset="26"/>
+    <vcpupin vcpu="14" cpuset="11"/>
+    <vcpupin vcpu="15" cpuset="27"/>
+    <vcpupin vcpu="16" cpuset="12"/>
+    <vcpupin vcpu="17" cpuset="28"/>
+    <vcpupin vcpu="18" cpuset="13"/>
+    <vcpupin vcpu="19" cpuset="29"/>
+    <vcpupin vcpu="20" cpuset="14"/>
+    <vcpupin vcpu="21" cpuset="30"/>
+    <vcpupin vcpu="22" cpuset="15"/>
+    <vcpupin vcpu="23" cpuset="31"/>
+  </cputune>
+  <sysinfo type="smbios">
+    <bios>
+      <entry name="vendor">American Megatrends Inc.</entry>
+      <entry name="version">1.80</entry>
+      <entry name="date">08/07/2020</entry>
+    </bios>
+    <system>
+      <entry name="manufacturer">Micro-Star International Co., Ltd.</entry>
+      <entry name="product">MPG X570 GAMING PRO CARBON WIFI (MS-7B93)</entry>
+      <entry name="version">1.0</entry>
+      <entry name="serial">K617200036</entry>
+      <entry name="uuid">25cec0f7-1fb7-4435-a792-76c12de24ae1</entry>
+      <entry name="sku">MPGX570GAMPROCA</entry>
+      <entry name="family">X570 MB</entry>
+    </system>
+  </sysinfo>
+  <os>
+    <type arch="x86_64" machine="pc-q35-6.2">hvm</type>
+    <loader readonly="yes" type="pflash">/usr/share/OVMF/OVMF_CODE_4M.fd</loader>
+    <nvram>/var/lib/libvirt/qemu/nvram/theseus_VARS.fd</nvram>
+    <bootmenu enable="yes"/>
+    <smbios mode="sysinfo"/>
+  </os>
+  <features>
+    <acpi/>
+    <apic/>
+    <hyperv mode="custom">
+      <relaxed state="on"/>
+      <vapic state="on"/>
+      <spinlocks state="on" retries="16384"/>
+      <vpindex state="on"/>
+      <runtime state="on"/>
+      <synic state="on"/>
+      <stimer state="on"/>
+      <reset state="on"/>
+      <vendor_id state="on" value="0123756792CD"/>
+      <frequencies state="on"/>
+    </hyperv>
+    <kvm>
+      <hidden state="on"/>
+    </kvm>
+    <vmport state="off"/>
+    <smm state="on"/>
+    <ioapic driver="kvm"/>
+  </features>
+  <cpu mode="host-model" check="partial">
+    <topology sockets="1" dies="1" cores="12" threads="2"/>
+    <feature policy="disable" name="amd-stibp"/>
+    <feature policy="require" name="tsc-deadline"/>
+    <feature policy="require" name="hypervisor"/>
+    <feature policy="require" name="tsc_adjust"/>
+    <feature policy="require" name="cmp_legacy"/>
+    <feature policy="require" name="perfctr_core"/>
+    <feature policy="require" name="virt-ssbd"/>
+    <feature policy="disable" name="monitor"/>
+    <feature policy="disable" name="x2apic"/>
+    <feature policy="require" name="topoext"/>
+    <feature policy="require" name="invtsc"/>
+    <feature policy="disable" name="svm"/>
+  </cpu>
+  <clock offset="localtime">
+    <timer name="hypervclock" present="yes"/>
+    <timer name="rtc" tickpolicy="catchup"/>
+    <timer name="pit" tickpolicy="delay"/>
+    <timer name="hpet" present="no"/>
+  </clock>
+  <on_poweroff>destroy</on_poweroff>
+  <on_reboot>restart</on_reboot>
+  <on_crash>destroy</on_crash>
+  <pm>
+    <suspend-to-mem enabled="no"/>
+    <suspend-to-disk enabled="no"/>
+  </pm>
+  <devices>
+    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <disk type="file" device="cdrom">
+      <driver name="qemu" type="raw"/>
+      <source file="/home/owner/Downloads/Windows_10_Pro.iso"/>
+      <target dev="sda" bus="sata"/>
+      <readonly/>
+      <boot order="1"/>
+      <address type="drive" controller="0" bus="0" target="0" unit="0"/>
+    </disk>
+    <disk type="block" device="disk">
+      <driver name="qemu" type="raw" cache="none" io="native" discard="unmap"/>
+      <source dev="/dev/disk/by-id/nvme-Samsung_SSD_970_PRO_512GB_S5JYNS0N709889V"/>
+      <target dev="sdb" bus="sata"/>
+      <boot order="2"/>
+      <address type="drive" controller="0" bus="0" target="0" unit="1"/>
+    </disk>
+    <disk type="block" device="disk">
+      <driver name="qemu" type="raw" cache="none" io="native" discard="unmap"/>
+      <source dev="/dev/disk/by-id/ata-Samsung_SSD_850_PRO_1TB_S3D2NX0HA09737Z"/>
+      <target dev="sdc" bus="sata"/>
+      <boot order="3"/>
+      <address type="drive" controller="0" bus="0" target="0" unit="2"/>
+    </disk>
+    <disk type="block" device="disk">
+      <driver name="qemu" type="raw" cache="none" io="native" discard="unmap"/>
+      <source dev="/dev/disk/by-id/ata-SAMSUNG_SSD_830_Series_S0Z3NSACA01314"/>
+      <target dev="sdd" bus="sata"/>
+      <boot order="4"/>
+      <address type="drive" controller="0" bus="0" target="0" unit="3"/>
+    </disk>
+    <controller type="usb" index="0" model="qemu-xhci" ports="15">
+      <address type="pci" domain="0x0000" bus="0x03" slot="0x00" function="0x0"/>
+    </controller>
+    <controller type="pci" index="0" model="pcie-root"/>
+    <controller type="pci" index="1" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="1" port="0x10"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x0" multifunction="on"/>
+    </controller>
+    <controller type="pci" index="2" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="2" port="0x11"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x1"/>
+    </controller>
+    <controller type="pci" index="3" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="3" port="0x12"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x2"/>
+    </controller>
+    <controller type="pci" index="4" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="4" port="0x13"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x3"/>
+    </controller>
+    <controller type="pci" index="5" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="5" port="0x14"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x4"/>
+    </controller>
+    <controller type="pci" index="6" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="6" port="0x15"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x5"/>
+    </controller>
+    <controller type="pci" index="7" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="7" port="0x16"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x6"/>
+    </controller>
+    <controller type="pci" index="8" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="8" port="0x17"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x02" function="0x7"/>
+    </controller>
+    <controller type="pci" index="9" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="9" port="0x18"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x0" multifunction="on"/>
+    </controller>
+    <controller type="pci" index="10" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="10" port="0x19"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x1"/>
+    </controller>
+    <controller type="pci" index="11" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="11" port="0x1a"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x2"/>
+    </controller>
+    <controller type="pci" index="12" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="12" port="0x1b"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x3"/>
+    </controller>
+    <controller type="pci" index="13" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="13" port="0x1c"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x4"/>
+    </controller>
+    <controller type="pci" index="14" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="14" port="0x1d"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x5"/>
+    </controller>
+    <controller type="pci" index="15" model="pcie-root-port">
+      <model name="pcie-root-port"/>
+      <target chassis="15" port="0x1e"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x03" function="0x6"/>
+    </controller>
+    <controller type="pci" index="16" model="pcie-to-pci-bridge">
+      <model name="pcie-pci-bridge"/>
+      <address type="pci" domain="0x0000" bus="0x01" slot="0x00" function="0x0"/>
+    </controller>
+    <controller type="sata" index="0">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1f" function="0x2"/>
+    </controller>
+    <controller type="virtio-serial" index="0">
+      <address type="pci" domain="0x0000" bus="0x04" slot="0x00" function="0x0"/>
+    </controller>
+    <interface type="network">
+      <mac address="52:54:00:6f:35:a7"/>
+      <source network="default"/>
+      <model type="e1000e"/>
+      <address type="pci" domain="0x0000" bus="0x02" slot="0x00" function="0x0"/>
+    </interface>
+    <serial type="pty">
+      <target type="isa-serial" port="0">
+        <model name="isa-serial"/>
+      </target>
+    </serial>
+    <console type="pty">
+      <target type="serial" port="0"/>
+    </console>
+    <channel type="spicevmc">
+      <target type="virtio" name="com.redhat.spice.0"/>
+      <address type="virtio-serial" controller="0" bus="0" port="1"/>
+    </channel>
+    <input type="mouse" bus="virtio">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x0d" function="0x0"/>
+    </input>
+    <input type="keyboard" bus="virtio">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x0c" function="0x0"/>
+    </input>
+    <input type="mouse" bus="ps2"/>
+    <input type="keyboard" bus="ps2"/>
+    <graphics type="spice" autoport="yes">
+      <listen type="address"/>
+      <image compression="off"/>
+    </graphics>
+    <sound model="ich9">
+      <audio id="1"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x1b" function="0x0"/>
+    </sound>
+    <audio id="1" type="spice"/>
+    <video>
+      <model type="vga" vram="16384" heads="1" primary="yes"/>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x01" function="0x0"/>
+    </video>
+    <hostdev mode="subsystem" type="pci" managed="yes">
+      <source>
+        <address domain="0x0000" bus="0x24" slot="0x00" function="0x0"/>
+      </source>
+      <address type="pci" domain="0x0000" bus="0x05" slot="0x00" function="0x0"/>
+    </hostdev>
+    <hostdev mode="subsystem" type="pci" managed="yes">
+      <source>
+        <address domain="0x0000" bus="0x24" slot="0x00" function="0x1"/>
+      </source>
+      <address type="pci" domain="0x0000" bus="0x06" slot="0x00" function="0x0"/>
+    </hostdev>
+    <hostdev mode="subsystem" type="pci" managed="yes">
+      <source>
+        <address domain="0x0000" bus="0x28" slot="0x00" function="0x0"/>
+      </source>
+      <address type="pci" domain="0x0000" bus="0x10" slot="0x01" function="0x0"/>
+    </hostdev>
+    <redirdev bus="usb" type="spicevmc">
+      <address type="usb" bus="0" port="1"/>
+    </redirdev>
+    <redirdev bus="usb" type="spicevmc">
+      <address type="usb" bus="0" port="2"/>
+    </redirdev>
+    <memballoon model="virtio">
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x0a" function="0x0"/>
+    </memballoon>
+    <shmem name="looking-glass">
+      <model type="ivshmem-plain"/>
+      <size unit="M">128</size>
+      <address type="pci" domain="0x0000" bus="0x00" slot="0x0b" function="0x0"/>
+    </shmem>
+  </devices>
+</domain>
+  ```
