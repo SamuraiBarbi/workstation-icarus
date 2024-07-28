@@ -434,36 +434,7 @@ Now we create the actual Virtual Machine itself in Virtual Machine Manager. This
 
 #### Configurating Virtual Machine
 
-VM Name is theseus
-
-* Memory (RAM): 65536
-* Sound ich9: HDA (ICH9)
-* Overview -> Hypervisor Details
-    * Firmware: UEFI x86_64: /usr/share/OVMF/OVMF_CODE.fd
-    * Chipset: i440FX
-* Virtual Network Interface -> Network source
-    * Virtual network 'default' : NAT
-* Add Hardware -> Storage -> Select or Create Custom Storage
-    * Manage: /dev/disk/by-id/nvme-Samsung_SSD_970_PRO_512GB_S5JYNS0N709889V
-    * Device Type: Disk device
-    * Bus type: SATA
-* Add Hardware -> PCI Host Device
-    * 0000:01:00:0 NVIDIA Corporation GP102 [GeForce GTX 1080 Ti]
-* Add Hardware -> PCI Host Device
-    * 0000:01:01:1 NVIDIA Corporation GP102 HDMI Audio Controller
-* Add Hardware -> PCI Host Devices
-    * 0000:28:00:0 Intel Corporation Wi-Fi 6 AX200
-* CPUs -> Configuration
-    * Current Allocation: 24
-    * Model: host-passthrough
-
-### Configuring Windows Guest
-
-**WINDOWS GUEST:**
-
-Finish installation, and run updates. Now we need to download https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/virtio-win10-prewhql-0.1-161.zip and extract the contents, look in the Devices and Hardware for anything that's missing a driver, and install drivers from the location of the virtio-win10 folder that we extracted. Next in Devices and Hardware, look for PCI standard RAM Controller and update the drivers for this device with drivers from the virtio-win10 folder as well so that Windows will see IVSHMEM device.
-
-LINUX HOST:
+**LINUX HOST:**
 Make sure we install all of the various bits we'll need to build the Looking Glass client application.
 
 Let's build the Looking Glass ( https://looking-glass.io/downloads ) client application ( looking-glass-client ) that will listen for the Windows guest video memory buffer. Once we've built it, the path to the client will be `/home/owner/.virtualmachine/LookingGlass/client/build/looking-glass-client`.
@@ -514,6 +485,31 @@ Now we need to restart the apparmor service.
 ```bash
 sudo systemctl restart apparmor
 ```
+
+#### Virtual Machine Settings
+
+VM Name is theseus
+
+* Memory (RAM): 65536
+* Sound ich9: HDA (ICH9)
+* Overview -> Hypervisor Details
+    * Firmware: UEFI x86_64: /usr/share/OVMF/OVMF_CODE.fd
+    * Chipset: i440FX
+* Virtual Network Interface -> Network source
+    * Virtual network 'default' : NAT
+* Add Hardware -> Storage -> Select or Create Custom Storage
+    * Manage: /dev/disk/by-id/nvme-Samsung_SSD_970_PRO_512GB_S5JYNS0N709889V
+    * Device Type: Disk device
+    * Bus type: SATA
+* Add Hardware -> PCI Host Device
+    * 0000:01:00:0 NVIDIA Corporation GP102 [GeForce GTX 1080 Ti]
+* Add Hardware -> PCI Host Device
+    * 0000:01:01:1 NVIDIA Corporation GP102 HDMI Audio Controller
+* Add Hardware -> PCI Host Devices
+    * 0000:28:00:0 Intel Corporation Wi-Fi 6 AX200
+* CPUs -> Configuration
+    * Current Allocation: 24
+    * Model: host-passthrough
 
 
 Open Virsh Manager
@@ -833,3 +829,11 @@ Open Virsh Manager
   </devices>
 </domain>
 ```
+* **Paste the full XML content** into the XML tab replacing any content that was originally in the tab. Click **Apply**.
+
+
+### Configuring Windows Guest
+
+**WINDOWS GUEST:**
+
+Finish installation, and run updates. Now we need to download https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/virtio-win10-prewhql-0.1-161.zip and extract the contents, look in the Devices and Hardware for anything that's missing a driver, and install drivers from the location of the virtio-win10 folder that we extracted. Next in Devices and Hardware, look for PCI standard RAM Controller and update the drivers for this device with drivers from the virtio-win10 folder as well so that Windows will see IVSHMEM device.
