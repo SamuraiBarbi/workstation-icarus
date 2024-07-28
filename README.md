@@ -442,9 +442,13 @@ Now we create the actual Virtual Machine itself in Virtual Machine Manager. This
 #### Configurating Virtual Machine
 
 **LINUX HOST:**
-Make sure we install all of the various bits we'll need to build the Looking Glass client application.
+Make sure we install all of the various bits we'll need to build the Looking Glass client application and audio working via Scream.
 
-Let's build the Looking Glass ( https://looking-glass.io/downloads ) client application ( looking-glass-client ) that will listen for the Windows guest video memory buffer. Once we've built it, the path to the client will be `/home/owner/.virtualmachine/LookingGlass/client/build/looking-glass-client`.
+```bash
+sudo nala install -y binutils-dev cmake fonts-freefont-ttf libsdl2-dev libsdl2-ttf-dev libspice-protocol-dev libfontconfig1-dev libx11-dev nettle-dev libxpresent-dev libpipewire-0.3
+```
+
+Let's build the Looking Glass ( https://looking-glass.io/downloads ) client application ( looking-glass-client ) that will listen for the Windows guest video memory buffer. Once we've built it, the path to the client will be `/home/owner/.virtualmachine/LookingGlass/client/build/looking-glass-client`. I used the Version: B7-rc1 client available from https://looking-glass.io/artifact/rc/source by downloading it and extracting it's contents to my `/home/owner/.virtualmachine/LookingGlass` directory however otherwise we'd use the git directly.
 
 ```bash
 mkdir -p /home/owner/.virtualmachine/LookingGlass
@@ -495,6 +499,8 @@ sudo systemctl restart apparmor
 
 #### Virtual Machine Settings
 
+**Linux Host:**
+
 VM Name is theseus
 
 * Memory (RAM): 65536
@@ -530,6 +536,7 @@ Open Virsh Manager
 * **Name** enter **Theseus**, **check** the box to enable **Customize configuration before install**, click **Finish**
 * For the Theseus virtual machine click the **XML** tab, and copy the value of the xml `domain` -> `uuid` element. For example mine was `7236d45b-72d5-41f5-b7b3-5a16cb2fc6eb`
 * Replace the value for `domain` -> `uuid` element in the following with the value you copied
+* Replace the value for `domain` -> `sysinfo` -> `system` -> `entry name="uuid"` element in the following with the value you copied
 
 ```
 <domain type="kvm">
@@ -836,8 +843,7 @@ Open Virsh Manager
   </devices>
 </domain>
 ```
-* **Paste the full XML content** into the XML tab replacing any content that was originally in the tab. Click **Apply**
-
+* **Paste the full XML content with the replacements you've made** into the XML tab clearing any content that was originally in the tab. Click **Apply**
 
 ### Configuring Windows Guest
 
@@ -847,13 +853,14 @@ Finish installation, and run updates. Now we need to download https://fedorapeop
 
 #### Installing Looking Glass Host
 
-We now need to get the Looking Glass host set up in the Windows guest. In the Windows guest go to https://looking-glass.hostfission.com/downloads and download the looking glass host **7d2b3905**, extract and run the setup file, specify location for install as `C:\Users\owner\.virtualmachine\LookingGlass` and uncheck the service installation option.
+We now need to get the Looking Glass host set up in the Windows guest. In the Windows guest go to https://looking-glass.hostfission.com/downloads and download the looking glass host **4d45b380**, extract and run the setup file, specify location for install as `C:\Users\owner\.virtualmachine\LookingGlass` and make sure the the checkbox is toggled on for service installation option. I used version Version: B7-rc1 available at https://looking-glass.io/artifact/rc/host.
 
 #### Installing Scream Host
 
-Let's download the latest non-source zip of Scream from https://github.com/duncanthrax/scream/releases/latest and extract the folder called `Install` from it to the `C:` drive.
+Let's download the latest non-source zip of Scream from https://github.com/duncanthrax/scream/releases/latest and extract the folder called `Install` from it to the `C:` drive. Before 
 Run cmd as administrator
 
 ```bash
 C:\Install\install.bat
 ```
+
