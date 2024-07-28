@@ -849,7 +849,7 @@ Open Virsh Manager
 
 **WINDOWS GUEST:**
 
-Finish installation, and run updates. Now we need to download https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/virtio-win10-prewhql-0.1-161.zip and extract the contents, look in the Devices and Hardware for anything that's missing a driver, and install drivers from the location of the virtio-win10 folder that we extracted. Next in **Devices and Hardware**, look for **PCI standard RAM Controller** and update the drivers for this device with drivers from the virtio-win10 folder as well so that Windows will see IVSHMEM device.
+Finish installation, and run updates. Now we need to download https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/virtio-win10-prewhql-0.1-161.zip and extract the contents, look in the **Devices and Hardware** for anything that's missing a driver, and install drivers from the location of the virtio-win10 folder that we extracted. Next in **Devices and Hardware**, look for **PCI standard RAM Controller** and update the drivers for this device with drivers from the virtio-win10 folder as well so that Windows will see IVSHMEM device. Update any drivers that are missing under **System Devices** or **Human Interface Devices** from the virtio-win10 folder as well.
 
 #### Installing Looking Glass Host
 
@@ -857,10 +857,11 @@ We now need to get the Looking Glass host set up in the Windows guest. In the Wi
 
 #### Installing Scream Host
 
-Let's download the latest non-source zip of Scream from https://github.com/duncanthrax/scream/releases/latest and extract the folder called `Install` from it to the `C:` drive. Before 
+Let's download the latest non-source zip of Scream from https://github.com/duncanthrax/scream/releases/latest and extract the folder called `Install` from it to the `C:` drive. Before installing, we need to change our Windows date to 2022 or prior in otherwise we will encounter an error during install due to a certificate being expired, see - https://github.com/duncanthrax/scream/issues/218.
+
 Run cmd as administrator
 
 ```bash
-C:\Install\install.bat
+C:\Install\Install-x64.bat
 ```
 
