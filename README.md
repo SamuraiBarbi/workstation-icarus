@@ -465,3 +465,12 @@ Finish installation, and run updates. Now we need to download https://fedorapeop
 
 LINUX HOST:
 Make sure we install all of the various bits we'll need to build the Looking Glass client application.
+
+Open Virsh Manager
+
+* Click **Create a New Virtual Machine**
+* Select **Manual Install**, click **Forward**
+* Enter **Microsoft Windows 10**, click **Forward**
+* For **Memory** enter **65536**, **CPUs** enter **24**, click **Forward**
+* **Uncheck** the box to disable **Enable storage for this virtual machine**, click **Forward**
+* **Name** enter **Theseus**, **check** the box to enable **Customize configuration before install**, click **Finish**
