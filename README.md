@@ -843,4 +843,17 @@ Open Virsh Manager
 
 **WINDOWS GUEST:**
 
-Finish installation, and run updates. Now we need to download https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/virtio-win10-prewhql-0.1-161.zip and extract the contents, look in the Devices and Hardware for anything that's missing a driver, and install drivers from the location of the virtio-win10 folder that we extracted. Next in Devices and Hardware, look for PCI standard RAM Controller and update the drivers for this device with drivers from the virtio-win10 folder as well so that Windows will see IVSHMEM device.
+Finish installation, and run updates. Now we need to download https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/upstream-virtio/virtio-win10-prewhql-0.1-161.zip and extract the contents, look in the Devices and Hardware for anything that's missing a driver, and install drivers from the location of the virtio-win10 folder that we extracted. Next in **Devices and Hardware**, look for **PCI standard RAM Controller** and update the drivers for this device with drivers from the virtio-win10 folder as well so that Windows will see IVSHMEM device.
+
+#### Installing Looking Glass Host
+
+We now need to get the Looking Glass host set up in the Windows guest. In the Windows guest go to https://looking-glass.hostfission.com/downloads and download the looking glass host **7d2b3905**, extract and run the setup file, specify location for install as `C:\Users\owner\.virtualmachine\LookingGlass` and uncheck the service installation option.
+
+#### Installing Scream Host
+
+Let's download the latest non-source zip of Scream from https://github.com/duncanthrax/scream/releases/latest and extract the folder called `Install` from it to the `C:` drive.
+Run cmd as administrator
+
+```bash
+C:\Install\install.bat
+```
