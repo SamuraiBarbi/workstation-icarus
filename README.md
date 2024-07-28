@@ -1,6 +1,13 @@
 # icarus-workstation
 Install instructions for icarus-workstation
 
+#### Resources
+
+* https://forum.level1techs.com/t/dual-gpu-vfio-setup-documentation-amd-cpu-gpus-with-kvm-switching/207205
+* https://www.heiko-sieger.info/blacklisting-graphics-driver/
+* https://www.reddit.com/r/VFIO/comments/188cf9v/comment/kbli5zz/
+* https://forum.level1techs.com/t/problem-cant-use-driverctl-overrides-on-nvidia-driver/176777/3
+
 First off I should say the following is not necessary for a majority of people with any interest in GPU passthrough from a Linux host to a Windows guest. I've done all of this because of my very particular requirements for an ideal workstation/general purpose PC.
 
 > * Wanting to stay in a Linux environment at all times
@@ -829,7 +836,7 @@ Open Virsh Manager
   </devices>
 </domain>
 ```
-* **Paste the full XML content** into the XML tab replacing any content that was originally in the tab. Click **Apply**.
+* **Paste the full XML content** into the XML tab replacing any content that was originally in the tab. Click **Apply**
 
 
 ### Configuring Windows Guest
