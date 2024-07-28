@@ -478,7 +478,7 @@ Open Virsh Manager
 * For the Theseus virtual machine click the **XML** tab, and copy the value of the xml `domain` -> `uuid` element. For example mine was `7236d45b-72d5-41f5-b7b3-5a16cb2fc6eb`
 * Replace the value for `domain` -> `uuid` element in the following with the value you copied
 
-  ```bash
+```
 <domain type="kvm">
   <name>theseus</name>
   <uuid>25cec0f7-1fb7-4435-a792-76c12de24ae1</uuid>
@@ -782,4 +782,4 @@ Open Virsh Manager
     </shmem>
   </devices>
 </domain>
-  ```
+```
