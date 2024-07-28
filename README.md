@@ -504,7 +504,7 @@ Add the following to the contents of the libvirt-qemu file and restart apparmor.
 sudo nano /etc/apparmor.d/abstractions/libvirt-qemu
 ```
 
-Then we'll paste the contents
+Then we'll paste the following contents at the end of the file, then save our changes.
 
     /{dev,run}/shm/ rw,
     /{dev,run}/shm/* rw,
