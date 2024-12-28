@@ -722,7 +722,7 @@ Open Virsh Manager
       <entry name="product">MPG X570 GAMING PRO CARBON WIFI (MS-7B93)</entry>
       <entry name="version">1.0</entry>
       <entry name="serial">K617200036</entry>
-      <entry name="uuid">25cec0f7-1fb7-4435-a792-76c12de24ae1</entry>
+      <entry name="uuid">7236d45b-72d5-41f5-b7b3-5a16cb2fc6eb</entry>
       <entry name="sku">MPGX570GAMPROCA</entry>
       <entry name="family">X570 MB</entry>
     </system>
