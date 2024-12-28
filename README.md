@@ -983,11 +983,11 @@ Open Virsh Manager
 
 To launch LookingGlass
 ```bash
-    cd $HOME/.virtualmachine/LookingGlass/client/build/looking-glass-client
+    $HOME/.virtualmachine/LookingGlass/client/build/looking-glass-client
 ```
 To launch Scream
 ```bash
-    cd $HOME/.virtualmachine/Scream/Receivers/unix/client/build/scream -i virbr0
+    $HOME/.virtualmachine/Scream/Receivers/unix/client/build/scream -i virbr0
 ```
 
 Creating a bash script called theseus.sh to tie it all together, When ran in a console or made executable, it will perform all the necessary tasks to start the virtual machine, initiate Looking Glass and connect Scream
@@ -1016,6 +1016,11 @@ Update permissions of the theseus.sh bash script to allow executing it.
 
 ```bash
 chmod +x $HOME/.virtualmachine/thesus.sh
+```
+
+To launch our Theseus windows virtual machine
+```bash
+$HOME/.virtualmachine/thesus.sh
 ```
  
 ### Configuring Windows Guest
