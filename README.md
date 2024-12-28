@@ -85,9 +85,9 @@ sudo apt install fastfetch
 Create the folders that the network shares will be mapped to
 
 ```bash
-sudo mkdir -p /home/owner/.mnt/media/.atlas.backup/
-sudo mkdir -p /home/owner/.mnt/media/.atlas.media-server/_downloads
-sudo mkdir -p /home/owner/.mnt/media/.atlas.media-server/_media
+mkdir -p /home/owner/.mnt/media/.atlas.backup/
+mkdir -p /home/owner/.mnt/media/.atlas.media-server/_downloads
+mkdir -p /home/owner/.mnt/media/.atlas.media-server/_media
 ```
 
 Now add the networked shares to fstab so that they'll be mounted when we boot up
@@ -99,9 +99,9 @@ sudo nano /etc/fstab
 Then we paste the contents at the end of the file
 
 ```bash
-10.10.10.200:/mnt/atlas-storage/atlas.backup/    /home/owner/.mnt/media/.atlas.backup/    nfs    auto,nofail,noatime,nolock,intr,proto=tcp,hard,actimeo=1800,port=2049    0    0
-10.10.10.200:/mnt/atlas-storage/atlas.media-server/_downloads/    /home/owner/.mnt/media/.atlas.media-server/_downloads/ nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
-10.10.10.200:/mnt/atlas-storage/atlas.media-server/_media/    /home/owner/.mnt/media/.atlas.media-server/_media/    nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
+192.168.2.20:/mnt/atlas-storage/atlas.backup/    /home/owner/.mnt/media/.atlas.backup/    nfs    auto,nofail,noatime,nolock,intr,proto=tcp,hard,actimeo=1800,port=2049    0    0
+192.168.2.20:/mnt/atlas-storage/atlas.media-server/_downloads/    /home/owner/.mnt/media/.atlas.media-server/_downloads/ nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
+192.168.2.20:/mnt/atlas-storage/atlas.media-server/_media/    /home/owner/.mnt/media/.atlas.media-server/_media/    nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
 ```
 
 Restart the machine for the changes to take effect and the shares to be auto mounted
