@@ -126,7 +126,7 @@ source ~/miniconda3/bin/activate
 conda init bash
 conda info
 conda update --all
-
+```
 
 #### Install Docker and Docker Compose
 ```bash
