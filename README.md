@@ -86,8 +86,8 @@ Create the folders that the network shares will be mapped to
 
 ```bash
 mkdir -p /home/owner/.mnt/media/.atlas.backup/
-mkdir -p /home/owner/.mnt/media/.atlas.media-server/_downloads
-mkdir -p /home/owner/.mnt/media/.atlas.media-server/_media
+mkdir -p /home/owner/.mnt/media/.atlas.media-server/
+mkdir -p /home/owner/.mnt/media/.atlas.sort/
 ```
 
 Now add the networked shares to fstab so that they'll be mounted when we boot up
@@ -100,8 +100,8 @@ Then we paste the contents at the end of the file
 
 ```bash
 192.168.2.20:/mnt/atlas-storage/atlas.backup/    /home/owner/.mnt/media/.atlas.backup/    nfs    auto,nofail,noatime,nolock,intr,proto=tcp,hard,actimeo=1800,port=2049    0    0
-192.168.2.20:/mnt/atlas-storage/atlas.media-server/_downloads/    /home/owner/.mnt/media/.atlas.media-server/_downloads/ nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
-192.168.2.20:/mnt/atlas-storage/atlas.media-server/_media/    /home/owner/.mnt/media/.atlas.media-server/_media/    nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
+192.168.2.20:/mnt/atlas-storage/atlas.media-server/    /home/owner/.mnt/media/.atlas.media-server/ nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
+192.168.2.20:/mnt/atlas-storage/atlas.sort/    /home/owner/.mnt/media/.atlas.sort/    nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
 ```
 
 Restart the machine for the changes to take effect and the shares to be auto mounted
