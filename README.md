@@ -195,12 +195,12 @@ sudo reboot now
 > * DBeaver
 > * VMware Workstation
 > * Visual Studio Code
-	> * Extensions:
- 	> * Prettier
-  	> * Roo Cline
-   	> * Cline
-    	> * Continue
-     	> * Condeium
+	* Extensions:
+ 	* Prettier
+  	* Roo Cline
+   	* Cline
+    	* Continue
+     	* Condeium
       
 
 #### Identifying IOMMU Groups and PCI Device Bus IDS
