@@ -217,6 +217,10 @@ sudo vmware-modconfig --console --install-all history
 
 Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
 
+#### Install Video Download Helper Companion 
+```bash
+curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/install.sh | bash
+```
 
 #### Additional Apps To Install
 > * Thunderbird
