@@ -180,7 +180,7 @@ Now let's restart the system
 sudo reboot now
 ```
 
-### Install VMware Workstation Pro
+#### Install VMware Workstation Pro
 ```bash
 cd $HOME/Downloads
 wget https://github.com/201853910/VMwareWorkstation/releases/download/17.0/VMware-Workstation-Full-17.5.0-22583795.x86_64.bundle
@@ -1011,6 +1011,12 @@ nano $HOME/.virtualmachine/thesus.sh
 	wait -n
 	pkill -P $$
 
+
+Update permissions of the theseus.sh bash script to allow executing it.
+
+```bash
+chmod +x $HOME/.virtualmachine/thesus.sh
+```
  
 ### Configuring Windows Guest
 
