@@ -89,15 +89,15 @@ sudo make install
 
 Run Timeshift and complete the Setup Wizard using the following:
 
-**Selection Snapshot Type** set as **BTRFS**, click **Next**
+1. **Selection Snapshot Type** set as **BTRFS**, click **Next**
 
-**Select Snapshot Location** should already have the correct location selected, click **Next**
+2. **Select Snapshot Location** should already have the correct location selected, click **Next**
 
-**Select Snapshot Levels** make your preferred selections, click **Next**
+3. **Select Snapshot Levels** make your preferred selections, click **Next**
 
-**User Home Directories** make your preferred selections, click **Next**
+4. **User Home Directories** make your preferred selections, click **Next**
 
-**Setup Complete** click **Finish**
+5. **Setup Complete** click **Finish**
 
 
 Now whenever an application is installed, an update is applied, or the kernel is updated/changed a snapshot will automatically be created and snapshots can be selected from our grub boot menu.
