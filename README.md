@@ -183,6 +183,14 @@ sudo reboot now
 #### Additional Apps To Install
 > * Thunderbird
 > * Firefox
+>   - Extensions:
+>     - [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
+>     - [SponsorBlock](https://addons.mozilla.org/en-US/firefox/addon/sponsorblock/)
+>     - [Enhancer for YouTube](https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/)
+>     - [LocalCDN](https://addons.mozilla.org/en-US/firefox/addon/localcdn-fork-of-decentraleyes/)
+>     - [Video Download Helper](https://addons.mozilla.org/en-US/firefox/addon/video-downloadhelper/)
+>     - [PDF Mage](https://addons.mozilla.org/en-US/firefox/addon/pdf-mage/)
+>     - [Go To Playing Tab](https://addons.mozilla.org/en-US/firefox/addon/go-to-playing-tab-2/)
 > * Brave
 > * Chrome
 > * Discord
