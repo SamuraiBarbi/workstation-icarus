@@ -10,7 +10,7 @@ then
     virsh start theseus
     sleep 25
 fi
-/home/owner/.virtualmachine/LookingGlass/client/build/looking-glass-client app:shmFile=/dev/shm/looking-glass win:showFPS=yes win:keepAspect=yes win:maximize=yes win:size=4096x2160 win:borderless=yes win:title=Theseus >/dev/null 2>&1 &
-/home/owner/.virtualmachine/Scream/Receivers/unix/client/build/scream -v -i virbr0 >/dev/null 2>&1 &
+$HOME/.virtualmachine/LookingGlass/client/build/looking-glass-client app:shmFile=/dev/shm/looking-glass win:showFPS=yes win:keepAspect=yes win:maximize=yes win:size=4096x2160 win:borderless=yes win:title=Theseus >/dev/null 2>&1 &
+$HOME/.virtualmachine/Scream/Receivers/unix/client/build/scream -v -i virbr0 >/dev/null 2>&1 &
 wait -n
 pkill -P $$
