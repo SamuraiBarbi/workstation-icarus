@@ -134,6 +134,8 @@ sudo reboot now
 
 
 #### Install Miniconda
+Let's get Conda installed so that we can manage environments running different versions of python and python packages.
+
 ```bash
 cd $HOME/Downloads/
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -145,6 +147,8 @@ conda update --all
 ```
 
 #### Install Docker and Docker Compose
+Let's get Docker and Docker Compose installed so that we can manage isolated containers for various applications.
+
 ```bash
 cd $HOME/Downloads/
 sudo apt update
