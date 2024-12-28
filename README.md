@@ -992,7 +992,7 @@ To launch Scream
 
 Creating a bash script called theseus.sh to tie it all together, When ran in a console or made executable, it will perform all the necessary tasks to start the virtual machine, initiate Looking Glass and connect Scream
 ```bash
-sudo nano cd $HOME/.virtualmachine/thesus.sh
+nano $HOME/.virtualmachine/thesus.sh
 ```
 	#!/bin/bash
 	
