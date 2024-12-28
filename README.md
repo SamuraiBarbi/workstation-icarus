@@ -22,7 +22,7 @@ First off I should say the following is not necessary for a majority of people w
 > * Wanting to feed my headset microphone input to both Linux host and Windows 10 guest at the same time
 
 
-If these things also generally interest you, then my particular setup may be something for you to adjust for your own needs. Just beware there is quite a bit of set up involved, and some high level degree of computer literacy involed, so this is not for the faint of heart.
+If these things also generally interest you, then my particular setup may be something for you to adjust for your own needs. Just beware there is quite a bit of set up involved, and some high level degree of computer literacy involved, so this is not for the faint of heart.
 
 
 Additional notes: If you are intending on playing Battlefield games or any games which use Punk Buster, make sure that once you've completed all of this you go to the Punk Buster website, download and install the Punk Buster service, and run the Punk Buster Setup for any games you intend on playing. If you do not do this you may end up getting kicked by multiplayer servers running Punk Buster.
