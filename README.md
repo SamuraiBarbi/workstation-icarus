@@ -184,6 +184,7 @@ sudo reboot now
 > * Thunderbird
 > * Firefox
 >   - Extensions:
+>     - [BitWarden](https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/)
 >     - [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
 >     - [SponsorBlock](https://addons.mozilla.org/en-US/firefox/addon/sponsorblock/)
 >     - [Enhancer for YouTube](https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/)
@@ -191,8 +192,35 @@ sudo reboot now
 >     - [Video Download Helper](https://addons.mozilla.org/en-US/firefox/addon/video-downloadhelper/)
 >     - [PDF Mage](https://addons.mozilla.org/en-US/firefox/addon/pdf-mage/)
 >     - [Go To Playing Tab](https://addons.mozilla.org/en-US/firefox/addon/go-to-playing-tab-2/)
+>     - [Return YouTube Dislikes](https://addons.mozilla.org/en-US/firefox/addon/return-youtube-dislikes/)
+>     - [600% Sound Volume](https://addons.mozilla.org/en-US/firefox/addon/600-sound-volume/)
+>     - [Augmented Steam](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/)
 > * Brave
+>   - Extensions:
+>     - [BitWarden](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb)
+>     - [uBlock Origin](https://chromewebstore.google.com/detail/ublock/epcnnfbjfcgphgdmggkamkmgojdagdnn)
+>     - [SponsorBlock](https://chromewebstore.google.com/detail/sponsorblock-for-youtube/mnjggcdmjocbbbhaepdhchncahnbgone)
+>     - [Enhancer For YouTube](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle)
+>     - [LocalCDN](https://chromewebstore.google.com/detail/localcdn/njdfdhgcmkocbgbhcioffdbicglldapd)
+>     - [Video Download Helper](https://chromewebstore.google.com/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfk)
+>     - [PDF Mage](https://chromewebstore.google.com/detail/pdf-mage/gknphemhpcknkhegndlihchfonpdcben)
+>     - [Go To Playing Tab](https://chromewebstore.google.com/detail/go-to-playing-tab/hmbhamadknmmkapmhbldodoajkcggcml)
+>     - [Return YouTube Dislikes](https://chromewebstore.google.com/detail/return-youtube-dislike/gebbhagfogifgggkldgodflihgfeippi)
+>     - [600% Sound Volume](https://chromewebstore.google.com/detail/sound-booster-increase-vo/nmigaijibiabddkkmjhlehchpmgbokfj)
+>     - [Augmented Steam](https://chromewebstore.google.com/detail/augmented-steam/dnhpnfgdlenaccegplpojghhmaamnnfp)
 > * Chrome
+>   - Extensions:
+>     - [BitWarden](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb)
+>     - [uBlock Origin](https://chromewebstore.google.com/detail/ublock/epcnnfbjfcgphgdmggkamkmgojdagdnn)
+>     - [SponsorBlock](https://chromewebstore.google.com/detail/sponsorblock-for-youtube/mnjggcdmjocbbbhaepdhchncahnbgone)
+>     - [Enhancer For YouTube](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle)
+>     - [LocalCDN](https://chromewebstore.google.com/detail/localcdn/njdfdhgcmkocbgbhcioffdbicglldapd)
+>     - [Video Download Helper](https://chromewebstore.google.com/detail/video-downloadhelper/lmjnegcaeklhafolokijcfjliaokphfk)
+>     - [PDF Mage](https://chromewebstore.google.com/detail/pdf-mage/gknphemhpcknkhegndlihchfonpdcben)
+>     - [Go To Playing Tab](https://chromewebstore.google.com/detail/go-to-playing-tab/hmbhamadknmmkapmhbldodoajkcggcml)
+>     - [Return YouTube Dislikes](https://chromewebstore.google.com/detail/return-youtube-dislike/gebbhagfogifgggkldgodflihgfeippi)
+>     - [600% Sound Volume](https://chromewebstore.google.com/detail/sound-booster-increase-vo/nmigaijibiabddkkmjhlehchpmgbokfj)
+>     - [Augmented Steam](https://chromewebstore.google.com/detail/augmented-steam/dnhpnfgdlenaccegplpojghhmaamnnfp)
 > * Discord
 > * Spotify
 > * VLC Player
@@ -205,11 +233,11 @@ sudo reboot now
 > * VMware Workstation
 > * Visual Studio Code
 >   - Extensions:
->     - Prettier
->     - Roo Cline
->     - Cline
->     - Continue
->     - Condeium
+>     - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+>     - [Roo Cline](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline)
+>     - [Cline](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev)
+>     - [Continue](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
+>     - [Codeium](https://marketplace.visualstudio.com/items?itemName=Codeium.codeium)
       
 
 #### Identifying IOMMU Groups and PCI Device Bus IDS
