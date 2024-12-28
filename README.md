@@ -119,7 +119,16 @@ We need to make sure that we open **Driver Manager** and **install the latest Nv
 Let's get Virtual Machine Manager and QEMU related applications installed.
 
 ```bash
-sudo nala install driverctl qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients virt-manager ovmf
+sudo nala install driverctl qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients virt-manager ovmf -y
+sudo nala install -y binutils-dev cmake fonts-freefont-ttf libsdl2-dev libsdl2-ttf-dev libspice-protocol-dev libfontconfig1-dev libx11-dev nettle-dev -y
+sudo nala install -y gir1.2-spiceclientgtk-3.0 -y
+sudo nala install -y wayland-protocols -y
+sudo nala install -y libxkbcommon-dev -y
+sudo nala install -y libxcursor-dev -y
+sudo nala install -y libxpresent-dev -y
+sudo nala install -y libgles-dev -y
+sudo nala install -y libpipewire-0.3-dev -y
+sudo nala install -y libsamplerate0-dev -y
 ```
 
 Now let's restart the system
