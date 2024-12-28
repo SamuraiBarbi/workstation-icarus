@@ -237,6 +237,7 @@ curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/instal
 >     - [Return YouTube Dislikes](https://addons.mozilla.org/en-US/firefox/addon/return-youtube-dislikes/)
 >     - [600% Sound Volume](https://addons.mozilla.org/en-US/firefox/addon/600-sound-volume/)
 >     - [Augmented Steam](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/)
+>     - [CivitAI Downloader](https://addons.mozilla.org/en-US/firefox/addon/civit-model-downloader/)
 > * Brave
 >   - Extensions:
 >     - [BitWarden](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb)
@@ -250,6 +251,7 @@ curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/instal
 >     - [Return YouTube Dislikes](https://chromewebstore.google.com/detail/return-youtube-dislike/gebbhagfogifgggkldgodflihgfeippi)
 >     - [600% Sound Volume](https://chromewebstore.google.com/detail/sound-booster-increase-vo/nmigaijibiabddkkmjhlehchpmgbokfj)
 >     - [Augmented Steam](https://chromewebstore.google.com/detail/augmented-steam/dnhpnfgdlenaccegplpojghhmaamnnfp)
+>     - [CivitAI Downloader](https://chromewebstore.google.com/detail/civit-model-downloader/dndabdgaagbfhbfhjkocfafjjabgmhea)
 > * Chrome
 >   - Extensions:
 >     - [BitWarden](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb)
@@ -263,6 +265,7 @@ curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/instal
 >     - [Return YouTube Dislikes](https://chromewebstore.google.com/detail/return-youtube-dislike/gebbhagfogifgggkldgodflihgfeippi)
 >     - [600% Sound Volume](https://chromewebstore.google.com/detail/sound-booster-increase-vo/nmigaijibiabddkkmjhlehchpmgbokfj)
 >     - [Augmented Steam](https://chromewebstore.google.com/detail/augmented-steam/dnhpnfgdlenaccegplpojghhmaamnnfp)
+>     - [CivitAI Downloader](https://chromewebstore.google.com/detail/civit-model-downloader/dndabdgaagbfhbfhjkocfafjjabgmhea)
 > * Discord
 > * Spotify
 > * VLC Player
