@@ -63,17 +63,21 @@ Choose your distro, get it installed and updated.
 Let's get our applications and networked shares set up.
 
 ```bash
-sudo apt-get install nala
-sudo nala install nvtop
-sudo nala install htop
-sudo nala install iotop				
-sudo nala install nfs-common
-sudo nala install git
-sudo nala install cmake
-sudo nala install mediainfo
-sudo nala install ffmpeg
-sudo nala install python3.12 python3.12-venv python3.12-dev
-sudo nala install python3-pip
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get dist-upgrade -y
+sudo apt-get install nala -y
+sudo nala install nvtop -y
+sudo nala install htop -y
+sudo nala install iotop -y		
+sudo nala install nfs-common -y
+sudo nala install git -y
+sudo nala install cmake -y
+sudo nala install mediainfo -y
+sudo nala install ffmpeg -y
+sudo add-apt-repository ppa:zhangsongcui3371/fastfetch -y
+sudo apt update
+sudo apt install fastfetch
 ```
 
 #### Set Up Auto Mounting Network Shares
