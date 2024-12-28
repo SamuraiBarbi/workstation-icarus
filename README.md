@@ -980,6 +980,38 @@ Open Virsh Manager
 ```
 * **Paste the full XML content with the replacements you've made** into the XML tab clearing any content that was originally in the tab. Click **Apply**
 
+
+To launch LookingGlass
+```bash
+    cd $HOME/.virtualmachine/LookingGlass/client/build/looking-glass-client
+```
+To launch Scream
+```bash
+    cd $HOME/.virtualmachine/Scream/Receivers/unix/client/build/scream -i virbr0
+```
+
+Creating a bash script called theseus.sh to tie it all together, When ran in a console or made executable, it will perform all the necessary tasks to start the virtual machine, initiate Looking Glass and connect Scream
+```bash
+sudo nano cd $HOME/.virtualmachine/thesus.sh
+```
+	#!/bin/bash
+	
+	tmp=$(virsh list --all | grep " theseus " | awk '{ print $3}')
+	if ([ "x$tmp" == "shut" ] || [ "x$tmp" != "xrunning" ])
+	then
+	    sudo rm -f /dev/shm/looking-glass
+	    touch /dev/shm/looking-glass
+	    sudo chown owner:kvm /dev/shm/looking-glass
+	    sudo chmod 660 /dev/shm/looking-glass
+	    virsh start theseus
+	    sleep 25
+	fi
+	$HOME/.virtualmachine/LookingGlass/client/build/looking-glass-client app:shmFile=/dev/shm/looking-glass win:showFPS=yes win:keepAspect=yes win:maximize=yes win:size=4096x2160 win:borderless=yes win:title=Theseus >/dev/null 2>&1 &
+	$HOME/.virtualmachine/Scream/Receivers/unix/client/build/scream -v -i virbr0 >/dev/null 2>&1 &
+	wait -n
+	pkill -P $$
+
+ 
 ### Configuring Windows Guest
 
 **WINDOWS GUEST:**
@@ -998,5 +1030,8 @@ Run cmd as administrator
 
 ```bash
 C:\Install\Install-x64.bat
+
+
+
 ```
 
