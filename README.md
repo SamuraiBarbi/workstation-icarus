@@ -67,17 +67,23 @@ sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
 sudo apt-get install nala -y
-sudo nala install nvtop -y
-sudo nala install htop -y
-sudo nala install iotop -y		
-sudo nala install nfs-common -y
-sudo nala install git -y
-sudo nala install cmake -y
-sudo nala install mediainfo -y
-sudo nala install ffmpeg -y
+
+sudo nala install git cmake build-essential nfs-common mediainfo ffmpeg -y 
+sudo nala install nvtop htop iotop -y
+
 sudo add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 sudo apt update
 sudo apt install fastfetch
+
+cd $HOME/Downloads/
+git clone https://github.com/wmutschl/timeshift-autosnap-apt.git $HOME/Downloads/timeshift-autosnap-apt
+cd $HOME/Downloads/timeshift-autosnap-apt
+sudo make Install
+
+cd $HOME/Downloads/
+git clone https://github.com/Antynea/grub-btrfs.git $HOME/Downloads/grub-btrfs
+cd $HOME/Downloads/grub-btrfs
+sudo make install
 ```
 
 #### Set Up Auto Mounting Network Shares
@@ -85,9 +91,9 @@ sudo apt install fastfetch
 Create the folders that the network shares will be mapped to
 
 ```bash
-mkdir -p /home/owner/.mnt/media/.atlas.backup/
-mkdir -p /home/owner/.mnt/media/.atlas.media-server/
-mkdir -p /home/owner/.mnt/media/.atlas.sort/
+mkdir -p $HOME/.mnt/media/.atlas.backup/
+mkdir -p $HOME/.mnt/media/.atlas.media-server/
+mkdir -p $HOME/.mnt/media/.atlas.sort/
 ```
 
 Now add the networked shares to fstab so that they'll be mounted when we boot up
@@ -99,9 +105,9 @@ sudo nano /etc/fstab
 Then we paste the contents at the end of the file
 
 ```bash
-192.168.2.20:/mnt/atlas-storage/atlas.backup/    /home/owner/.mnt/media/.atlas.backup/    nfs    auto,nofail,noatime,nolock,intr,proto=tcp,hard,actimeo=1800,port=2049    0    0
-192.168.2.20:/mnt/atlas-storage/atlas.media-server/    /home/owner/.mnt/media/.atlas.media-server/ nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
-192.168.2.20:/mnt/atlas-storage/atlas.sort/    /home/owner/.mnt/media/.atlas.sort/    nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
+192.168.2.20:/mnt/atlas-storage/atlas.backup/    $HOME/.mnt/media/.atlas.backup/    nfs    auto,nofail,noatime,nolock,intr,proto=tcp,hard,actimeo=1800,port=2049    0    0
+192.168.2.20:/mnt/atlas-storage/atlas.media-server/    $HOME/.mnt/media/.atlas.media-server/ nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
+192.168.2.20:/mnt/atlas-storage/atlas.sort/    $HOME/.mnt/media/.atlas.sort/    nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
 ```
 
 Restart the machine for the changes to take effect and the shares to be auto mounted
@@ -109,6 +115,40 @@ Restart the machine for the changes to take effect and the shares to be auto mou
 ```bash
 sudo reboot now
 ```
+
+
+#### Install Miniconda
+```bash
+cd $HOME/Downloads/
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh -b
+source ~/miniconda3/bin/activate
+conda init bash
+conda info
+conda update --all
+
+
+#### Install Docker and Docker Compose
+```bash
+cd $HOME/Downloads/
+sudo apt update
+sudo apt install -y apt-transport-https ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo \
+"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+$(. /etc/os-release && echo "$UBUNTU_CODENAME") stable" | \
+sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo usermod -aG docker $USER
+newgrp docker
+docker run hello-world
+docker compose version
+sudo systemctl status docker
+```
+
 
 #### Installing Nvidia Drivers
 
@@ -120,15 +160,17 @@ Let's get Virtual Machine Manager and QEMU related applications installed.
 
 ```bash
 sudo nala install driverctl qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients virt-manager ovmf -y
-sudo nala install -y binutils-dev cmake fonts-freefont-ttf libsdl2-dev libsdl2-ttf-dev libspice-protocol-dev libfontconfig1-dev libx11-dev nettle-dev -y
-sudo nala install -y gir1.2-spiceclientgtk-3.0 -y
-sudo nala install -y wayland-protocols -y
-sudo nala install -y libxkbcommon-dev -y
-sudo nala install -y libxcursor-dev -y
-sudo nala install -y libxpresent-dev -y
-sudo nala install -y libgles-dev -y
-sudo nala install -y libpipewire-0.3-dev -y
-sudo nala install -y libsamplerate0-dev -y
+
+sudo nala install binutils-dev cmake fonts-freefont-ttf libsdl2-dev libsdl2-ttf-dev libspice-protocol-dev libfontconfig1-dev libx11-dev nettle-dev -y
+sudo nala install gir1.2-spiceclientgtk-3.0 -y
+sudo nala install wayland-protocols -y
+sudo nala install libxkbcommon-dev -y
+sudo nala install libxcursor-dev -y
+sudo nala install libxpresent-dev -y
+sudo nala install libgles-dev -y
+sudo nala install libpipewire-0.3-dev -y
+sudo nala install libsamplerate0-dev -y
+sudo nala install numactl -y
 ```
 
 Now let's restart the system
@@ -136,6 +178,30 @@ Now let's restart the system
 ```bash
 sudo reboot now
 ```
+
+#### Additional Apps To Install
+> * Thunderbird
+> * Firefox
+> * Brave
+> * Chrome
+> * Discord
+> * Spotify
+> * VLC Player
+> * OBS Studio
+> * Bottles
+> * OnlyOffice
+> * GIMP
+> * Audacity
+> * DBeaver
+> * VMware Workstation
+> * Visual Studio Code
+	> * Extensions:
+ 	> * Prettier
+  	> * Roo Cline
+   	> * Cline
+    	> * Continue
+     	> * Condeium
+      
 
 #### Identifying IOMMU Groups and PCI Device Bus IDS
 
@@ -461,12 +527,12 @@ Make sure we install all of the various bits we'll need to build the Looking Gla
 sudo nala install -y binutils-dev cmake fonts-freefont-ttf libsdl2-dev libsdl2-ttf-dev libspice-protocol-dev libfontconfig1-dev libx11-dev nettle-dev libxpresent-dev libpipewire-0.3
 ```
 
-Let's build the Looking Glass ( https://looking-glass.io/downloads ) client application ( looking-glass-client ) that will listen for the Windows guest video memory buffer. Once we've built it, the path to the client will be `/home/owner/.virtualmachine/LookingGlass/client/build/looking-glass-client`. I used the Version: B7-rc1 client available from https://looking-glass.io/artifact/rc/source by downloading it and extracting it's contents to my `/home/owner/.virtualmachine/LookingGlass` directory however otherwise we'd use the git directly.
+Let's build the Looking Glass ( https://looking-glass.io/downloads ) client application ( looking-glass-client ) that will listen for the Windows guest video memory buffer. Once we've built it, the path to the client will be `$HOME/.virtualmachine/LookingGlass/client/build/looking-glass-client`. I used the Version: B7-rc1 client available from https://looking-glass.io/artifact/rc/source by downloading it and extracting it's contents to my `$HOME/.virtualmachine/LookingGlass` directory however otherwise we'd use the git directly.
 
 ```bash
-mkdir -p /home/owner/.virtualmachine/LookingGlass
-git clone --recursive https://github.com/gnif/LookingGlass.git /home/owner/.virtualmachine/LookingGlass
-cd /home/owner/.virtualmachine/LookingGlass
+mkdir -p $HOME/.virtualmachine/LookingGlass
+git clone --recursive https://github.com/gnif/LookingGlass.git $HOME/.virtualmachine/LookingGlass
+cd $HOME/.virtualmachine/LookingGlass
 mkdir -p client/build
 cd client/build
 cmake ../
@@ -481,12 +547,12 @@ sudo chown owner:kvm /dev/shm/looking-glass
 sudo chmod 660 /dev/shm/looking-glass
 ```
 
-Let's build the Scream client application that will listen for the Windows guest audio over the virtual network bridge. Once we've built it, the path to the client will be `/home/owner/.virtualmachine/Scream/Receivers/unix/client/build/scream`
+Let's build the Scream client application that will listen for the Windows guest audio over the virtual network bridge. Once we've built it, the path to the client will be `$HOME/.virtualmachine/Scream/Receivers/unix/client/build/scream`
 
 ```bash
-mkdir -p /home/owner/.virtualmachine/Scream
-git clone --recursive https://github.com/duncanthrax/scream.git /home/owner/.virtualmachine/Scream
-cd /home/owner/.virtualmachine/Scream/Receivers/unix
+mkdir -p $HOME/.virtualmachine/Scream
+git clone --recursive https://github.com/duncanthrax/scream.git $HOME/.virtualmachine/Scream
+cd $HOME/.virtualmachine/Scream/Receivers/unix
 mkdir -p client/build
 cd client/build
 cmake ../../
@@ -666,7 +732,7 @@ Open Virsh Manager
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type="file" device="cdrom">
       <driver name="qemu" type="raw"/>
-      <source file="/home/owner/Downloads/Windows_10_Pro.iso"/>
+      <source file="$HOME/Downloads/Windows_10_Pro.iso"/>
       <target dev="sda" bus="sata"/>
       <readonly/>
       <boot order="1"/>
