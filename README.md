@@ -8,6 +8,7 @@ Install instructions for icarus-workstation
 * https://www.reddit.com/r/VFIO/comments/188cf9v/comment/kbli5zz/
 * https://forum.level1techs.com/t/problem-cant-use-driverctl-overrides-on-nvidia-driver/176777/3
 * https://wiki.archlinux.org/index.php/PCI_passthrough_via_OVMF
+* https://github.com/201853910/VMwareWorkstation
 
 First off I should say the following is not necessary for a majority of people with any interest in GPU passthrough from a Linux host to a Windows guest. I've done all of this because of my very particular requirements for an ideal workstation/general purpose PC.
 
