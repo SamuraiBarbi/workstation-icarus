@@ -287,7 +287,8 @@ curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/instal
 >     - [Cline](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev)
 >     - [Continue](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
 >     - [Codeium](https://marketplace.visualstudio.com/items?itemName=Codeium.codeium)
-      
+> * Tabby.sh
+> * WezTerm
 
 #### Setting Preferred Date Format
 Use **%A - %B %d,  %Y %I:%M:%S %p** as preferred date format.
