@@ -288,6 +288,14 @@ curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/instal
 >     - [Codeium](https://marketplace.visualstudio.com/items?itemName=Codeium.codeium)
       
 
+#### Setting Preferred Date Format
+Use **%A - %B %d,  %Y %I:%M:%S %p** as preferred date format.
+
+
+#### Setting Up Online Accounts
+When setting up **Online Accounts** keep in mind that you must be using the **Nouveou** video drivers because clicking Google in the providers list will not trigger the browser page to load if using Nvidia proprietary drivers. Use Nouveou drivers while getting online accounts set up and once finished switch back to using the **Nvidia** drivers via the **Driver Manager**
+
+
 #### Identifying IOMMU Groups and PCI Device Bus IDS
 
 Now let's just verify that our host OS ready for virtualization by confirming IMMOU support, and AMD-Vi features are enabled.
