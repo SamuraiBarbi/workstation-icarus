@@ -278,7 +278,17 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
 >     - [Augmented Steam](https://chromewebstore.google.com/detail/augmented-steam/dnhpnfgdlenaccegplpojghhmaamnnfp)
 >     - [CivitAI Downloader](https://chromewebstore.google.com/detail/civit-model-downloader/dndabdgaagbfhbfhjkocfafjjabgmhea)
 > * Discord
+  ```bash
+  wget -O $HOME/Downloads/discord.latest.deb https://discord.com/api/download?platform=linux
+  chmod +x $HOME/Downloads/discord.latest.deb
+  sudo dpkg -i $HOME/Downloads/discord.latest.deb
+  ```
 > * Spotify
+  ```bash
+  curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+  echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+  sudo apt-get update && sudo apt-get install spotify-client
+  ```
 > * VLC Player
 > * OBS Studio
 > * Bottles
