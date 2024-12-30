@@ -200,25 +200,6 @@ Now let's restart the system
 sudo reboot now
 ```
 
-#### Install VMware Workstation Pro
-```bash
-cd $HOME/Downloads
-wget https://github.com/201853910/VMwareWorkstation/releases/download/17.0/VMware-Workstation-Full-17.5.0-22583795.x86_64.bundle
-chmod +x VMware-Workstation-Full-17.5.0-22583795.x86_64.bundle
-sudo ./VMware-Workstation-Full-17.5.0-22583795.x86_64.bundle
-mkdir -p $HOME/Downloads/vmware_workstation_pro_17.5/vmware-host-modules
-cd $HOME/Downloads/vmware_workstation_pro_17.5/vmware-host-modules
-wget https://github.com/mkubecek/vmware-host-modules/archive/workstation-17.5.0.tar.gz 
-tar -xzf workstation-17.5.0.tar.gz
-cd vmware-host-modules-workstation-17.5.0
-tar -cf vmmon.tar vmmon-only && tar -cf vmnet.tar vmnet-only 
-sudo cp -v vmmon.tar vmnet.tar /usr/lib/vmware/modules/source
-sudo vmware-modconfig --console --install-all history
-```
-
-Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
-
-
 #### Additional Apps To Install
 > * Thunderbird
 > * Firefox
@@ -300,14 +281,35 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
 > * Bottles
 > * OnlyOffice
 > * GIMP
+  ```bash
+  sudo nala update && sudo nala install gimp -y
+  ```
 > * Audacity
+  ```bash
+  sudo nala update && sudo nala install audacity -y
+  ```
 > * DBeaver
   ```bash
   wget -qO $HOME/Downloads/dbeaver.latest.deb https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
   chmod +x $HOME/Downloads/dbeaver.latest.deb
   sudo dpkg -i $HOME/Downloads/dbeaver.latest.deb
   ```  
-> * VMware Workstation
+> * VMware Workstation Pro
+    - Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
+  ```bash
+  cd $HOME/Downloads
+  wget https://github.com/201853910/VMwareWorkstation/releases/download/17.0/VMware-Workstation-Full-17.5.0-22583795.x86_64.bundle
+  chmod +x VMware-Workstation-Full-17.5.0-22583795.x86_64.bundle
+  sudo ./VMware-Workstation-Full-17.5.0-22583795.x86_64.bundle
+  mkdir -p $HOME/Downloads/vmware_workstation_pro_17.5/vmware-host-modules
+  cd $HOME/Downloads/vmware_workstation_pro_17.5/vmware-host-modules
+  wget https://github.com/mkubecek/vmware-host-modules/archive/workstation-17.5.0.tar.gz 
+  tar -xzf workstation-17.5.0.tar.gz
+  cd vmware-host-modules-workstation-17.5.0
+  tar -cf vmmon.tar vmmon-only && tar -cf vmnet.tar vmnet-only 
+  sudo cp -v vmmon.tar vmnet.tar /usr/lib/vmware/modules/source
+  sudo vmware-modconfig --console --install-all history
+  ```
 > * Visual Studio Code
 >   - Extensions:
 >     - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
