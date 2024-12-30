@@ -290,6 +290,10 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
   sudo apt-get update && sudo apt-get install spotify-client
   ```
 > * VLC Player
+  ```bash
+  sudo apt update
+  sudo apt install vlc 
+  ```
 > * OBS Studio
 > * Bottles
 > * OnlyOffice
@@ -312,6 +316,9 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
 ```bash
 curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/install.sh | bash
 ```
+
+#### Add Missing Keys
+Open **Software Sources** -> click **Maintenance** -> click **Add Missing Keys**. Once finished click Update apt cache.
 
 #### Setting Preferred Date Format
 Use **%A - %B %d,  %Y %I:%M:%S %p** as preferred date format.
