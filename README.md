@@ -326,6 +326,9 @@ sudo reboot now
 >     - [Cline](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev)
 >     - [Continue](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
 >     - [Codeium](https://marketplace.visualstudio.com/items?itemName=Codeium.codeium)
+>     - [Tabby](https://marketplace.visualstudio.com/items?itemName=TabbyML.vscode-tabby)
+>     - [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+>     - [Python Environment Manager](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-environment-manager)
   ```bash
   wget -qO $HOME/Downloads/vscode.latest.deb https://go.microsoft.com/fwlink/?LinkID=760868
   chmod +x $HOME/Downloads/vscode.latest.deb
