@@ -1101,15 +1101,15 @@ pulseaudio -k && sudo alsa force-reload
 Unplug the previous affected inputs and plug them back in
 
 Getting system information for Linux host
-	lshw
-	lscpu
-	lspci
-	lsscsi
-	lsusb
-	lsblk
-	df -h
-	fdisk -l
-	dmesg
+* lshw
+* lscpu
+* lspci
+* lsscsi
+* lsusb
+* lsblk
+* df -h
+* fdisk -l
+* dmesg
 
 
 #### Monitor Nvidia GPU temps for host
