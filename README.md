@@ -280,6 +280,10 @@ sudo reboot now
   ```
 > * Bottles
 > * OnlyOffice
+  ```bash
+  flatpak install flathub org.onlyoffice.desktopeditors
+  flatpak run org.onlyoffice.desktopeditors
+  ```
 > * GIMP
   ```bash
   sudo nala update && sudo nala install gimp -y
