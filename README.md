@@ -218,10 +218,6 @@ sudo vmware-modconfig --console --install-all history
 
 Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
 
-#### Install Video Download Helper Companion 
-```bash
-curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/install.sh | bash
-```
 
 #### Additional Apps To Install
 > * Thunderbird
@@ -241,6 +237,17 @@ curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/instal
 >     - [Augmented Steam](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/)
 >     - [CivitAI Downloader](https://addons.mozilla.org/en-US/firefox/addon/civit-model-downloader/)
 > * Brave
+  ```bash
+	sudo apt install curl
+	
+	sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+	
+	echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+	
+	sudo apt update
+	
+	sudo apt install brave-browser
+  ```
 >   - Extensions:
 >     - [BitWarden](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb)
 >     - [uBlock Origin](https://chromewebstore.google.com/detail/ublock/epcnnfbjfcgphgdmggkamkmgojdagdnn)
@@ -289,6 +296,12 @@ curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/instal
 >     - [Codeium](https://marketplace.visualstudio.com/items?itemName=Codeium.codeium)
 > * Tabby.sh
 > * WezTerm
+
+
+#### Install Video Download Helper Companion 
+```bash
+curl -sSLf https://github.com/aclap-dev/vdhcoapp/releases/latest/download/install.sh | bash
+```
 
 #### Setting Preferred Date Format
 Use **%A - %B %d,  %Y %I:%M:%S %p** as preferred date format.
