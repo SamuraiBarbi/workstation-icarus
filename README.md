@@ -238,15 +238,15 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
 >     - [CivitAI Downloader](https://addons.mozilla.org/en-US/firefox/addon/civit-model-downloader/)
 > * Brave
   ```bash
-	sudo apt install curl
+	sudo nala install curl
 	
 	sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 	
 	echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 	
-	sudo apt update
+	sudo nala update
 	
-	sudo apt install brave-browser
+	sudo nala install brave-browser
   ```
 >   - Extensions:
 >     - [BitWarden](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb)
@@ -291,12 +291,12 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
   ```
 > * VLC Player
   ```bash
-  sudo apt update
+  sudo nala update
   sudo nala install vlc -y
   ```
 > * OBS Studio
   ```bash
-  sudo apt update
+  sudo nala update
   sudo nala install obs-studio -y
   ```
 > * Bottles
@@ -306,26 +306,39 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
 > * DBeaver
 > * VMware Workstation
 > * Visual Studio Code
-  ```bash
-  wget -qO $HOME/Downloads/vscode.latest.deb https://go.microsoft.com/fwlink/?LinkID=760868
-  chmod +x $HOME/Downloads/vscode.latest.deb
-  sudo dpkg -i $HOME/Downloads/vscode.latest.deb
-  ```
 >   - Extensions:
 >     - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 >     - [Roo Cline](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline)
 >     - [Cline](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev)
 >     - [Continue](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
 >     - [Codeium](https://marketplace.visualstudio.com/items?itemName=Codeium.codeium)
+  ```bash
+  wget -qO $HOME/Downloads/vscode.latest.deb https://go.microsoft.com/fwlink/?LinkID=760868
+  chmod +x $HOME/Downloads/vscode.latest.deb
+  sudo dpkg -i $HOME/Downloads/vscode.latest.deb
+  ```
 > * Windsurf
   ```bash
   curl -fsSL "https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/windsurf.gpg" | sudo gpg --dearmor -o /usr/share/keyrings/windsurf-stable-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/windsurf-stable-archive-keyring.gpg arch=amd64] https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/apt stable main" | sudo tee /etc/apt/sources.list.d/windsurf.list > /dev/null
-  sudo apt-get update
-  sudo apt-get upgrade windsurf
+  sudo nala update
+  sudo nala upgrade windsurf
   ```
 > * Tabby.sh
+  ```bash
+  wget -qO $HOME/Downloads/tabby.sh.latest.deb https://github.com/Eugeny/tabby/releases/download/v1.0.216/tabby-1.0.216-linux-x64.deb
+  chmod +x $HOME/Downloads/tabby.sh.latest.deb
+  sudo dpkg -i $HOME/Downloads/tabby.sh.latest.deb
+  ```
 > * WezTerm
+  ```bash
+  curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
+  echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+  sudo nala update
+  sudo nala install wezterm
+  ```
+
+
 
 
 #### Install Video Download Helper Companion 
