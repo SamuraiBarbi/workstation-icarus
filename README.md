@@ -201,8 +201,8 @@ sudo reboot now
 ```
 
 #### Additional Apps To Install
-> * Thunderbird
-> * Firefox
+> * **Thunderbird**
+> * **Firefox**
 >   - Extensions:
 >     - [BitWarden](https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/)
 >     - [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
@@ -217,7 +217,7 @@ sudo reboot now
 >     - [600% Sound Volume](https://addons.mozilla.org/en-US/firefox/addon/600-sound-volume/)
 >     - [Augmented Steam](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/)
 >     - [CivitAI Downloader](https://addons.mozilla.org/en-US/firefox/addon/civit-model-downloader/)
-> * Brave
+> * **Brave**
   ```bash
 	sudo nala install curl
 	
@@ -243,7 +243,7 @@ sudo reboot now
 >     - [600% Sound Volume](https://chromewebstore.google.com/detail/sound-booster-increase-vo/nmigaijibiabddkkmjhlehchpmgbokfj)
 >     - [Augmented Steam](https://chromewebstore.google.com/detail/augmented-steam/dnhpnfgdlenaccegplpojghhmaamnnfp)
 >     - [CivitAI Downloader](https://chromewebstore.google.com/detail/civit-model-downloader/dndabdgaagbfhbfhjkocfafjjabgmhea)
-> * Chrome
+> * **Chrome**
 >   - Extensions:
 >     - [BitWarden](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb)
 >     - [uBlock Origin](https://chromewebstore.google.com/detail/ublock/epcnnfbjfcgphgdmggkamkmgojdagdnn)
@@ -258,51 +258,51 @@ sudo reboot now
 >     - [600% Sound Volume](https://chromewebstore.google.com/detail/sound-booster-increase-vo/nmigaijibiabddkkmjhlehchpmgbokfj)
 >     - [Augmented Steam](https://chromewebstore.google.com/detail/augmented-steam/dnhpnfgdlenaccegplpojghhmaamnnfp)
 >     - [CivitAI Downloader](https://chromewebstore.google.com/detail/civit-model-downloader/dndabdgaagbfhbfhjkocfafjjabgmhea)
-> * Discord
+> * **Discord**
   ```bash
   wget -qO $HOME/Downloads/discord.latest.deb https://discord.com/api/download?platform=linux
   chmod +x $HOME/Downloads/discord.latest.deb
   sudo dpkg -i $HOME/Downloads/discord.latest.deb
   ```
-> * Spotify
+> * **Spotify**
   ```bash
   curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
   echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
   sudo nala update && sudo nala install spotify-client -y
   ```
-> * VLC Player
+> * **VLC Player**
   ```bash
   sudo nala update && sudo nala install vlc -y
   ```
-> * OBS Studio
+> * **OBS Studio**
   ```bash
   sudo nala update && sudo nala install obs-studio -y
   ```
-> * Bottles
+> * **Bottles**
   ```bash
   flatpak install flathub com.usebottles.bottles
   flatpak run .com.usebottles.bottles
   ```
-> * OnlyOffice
+> * **OnlyOffice**
   ```bash
   flatpak install flathub org.onlyoffice.desktopeditors
   flatpak run org.onlyoffice.desktopeditors
   ```
-> * GIMP
+> * **GIMP**
   ```bash
   sudo nala update && sudo nala install gimp -y
   ```
-> * Audacity
+> * **Audacity**
   ```bash
   sudo nala update && sudo nala install audacity -y
   ```
-> * DBeaver
+> * **DBeaver**
   ```bash
   wget -qO $HOME/Downloads/dbeaver.latest.deb https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
   chmod +x $HOME/Downloads/dbeaver.latest.deb
   sudo dpkg -i $HOME/Downloads/dbeaver.latest.deb
   ```  
-> * VMware Workstation Pro
+> * **VMware Workstation Pro**
     - Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
   ```bash
   cd $HOME/Downloads
@@ -318,7 +318,7 @@ sudo reboot now
   sudo cp -v vmmon.tar vmnet.tar /usr/lib/vmware/modules/source
   sudo vmware-modconfig --console --install-all history
   ```
-> * Visual Studio Code
+> * **Visual Studio Code**
 >   - Extensions:
 >     - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 >     - [Roo Cline](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline)
@@ -330,19 +330,19 @@ sudo reboot now
   chmod +x $HOME/Downloads/vscode.latest.deb
   sudo dpkg -i $HOME/Downloads/vscode.latest.deb
   ```
-> * Windsurf
+> * **Windsurf**
   ```bash
   curl -fsSL "https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/windsurf.gpg" | sudo gpg --dearmor -o /usr/share/keyrings/windsurf-stable-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/windsurf-stable-archive-keyring.gpg arch=amd64] https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/apt stable main" | sudo tee /etc/apt/sources.list.d/windsurf.list > /dev/null
   sudo nala update && udo nala install windsurf -y
   ```
-> * Tabby.sh
+> * **Tabby.sh**
   ```bash
   wget -qO $HOME/Downloads/tabby.sh.latest.deb https://github.com/Eugeny/tabby/releases/download/v1.0.216/tabby-1.0.216-linux-x64.deb
   chmod +x $HOME/Downloads/tabby.sh.latest.deb
   sudo dpkg -i $HOME/Downloads/tabby.sh.latest.deb
   ```
-> * WezTerm
+> * **WezTerm**
   ```bash
   curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
   echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
