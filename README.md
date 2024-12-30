@@ -279,7 +279,7 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
 >     - [CivitAI Downloader](https://chromewebstore.google.com/detail/civit-model-downloader/dndabdgaagbfhbfhjkocfafjjabgmhea)
 > * Discord
   ```bash
-  wget -O $HOME/Downloads/discord.latest.deb https://discord.com/api/download?platform=linux
+  wget -qO $HOME/Downloads/discord.latest.deb https://discord.com/api/download?platform=linux
   chmod +x $HOME/Downloads/discord.latest.deb
   sudo dpkg -i $HOME/Downloads/discord.latest.deb
   ```
@@ -307,7 +307,7 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
 > * VMware Workstation
 > * Visual Studio Code
   ```bash
-  wget -O $HOME/Downloads/vscode.latest.deb https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+  wget -qO $HOME/Downloads/vscode.latest.deb https://go.microsoft.com/fwlink/?LinkID=760868
   chmod +x $HOME/Downloads/vscode.latest.deb
   sudo dpkg -i $HOME/Downloads/vscode.latest.deb
   ```
