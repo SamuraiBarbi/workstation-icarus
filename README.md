@@ -1,5 +1,5 @@
-# icarus-workstation
-Install instructions for icarus-workstation
+# workstation-icarus
+Install instructions for workstation-icarus
 
 #### Resources
 
