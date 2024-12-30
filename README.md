@@ -204,19 +204,19 @@ sudo reboot now
 > * **Thunderbird**
 > * **Firefox**
 >   - Extensions:
->     - [BitWarden](https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/) - https://addons.mozilla.org/firefox/downloads/file/4407804/bitwarden_password_manager-latest.xpi
->     - [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) - https://addons.mozilla.org/firefox/downloads/file/4391011/ublock_origin-latest.xpi
->     - [SponsorBlock](https://addons.mozilla.org/en-US/firefox/addon/sponsorblock/) - https://addons.mozilla.org/firefox/downloads/file/4404647/sponsorblock-latest.xpi
->     - [Enhancer for YouTube](https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/) - https://addons.mozilla.org/firefox/downloads/file/4393561/enhancer_for_youtube-latest.xpi
->     - [BlockTube](https://addons.mozilla.org/en-US/firefox/addon/blocktube/) - https://addons.mozilla.org/firefox/downloads/file/4401602/blocktube-latest.xpi
->     - [LocalCDN](https://addons.mozilla.org/en-US/firefox/addon/localcdn-fork-of-decentraleyes/) - https://addons.mozilla.org/firefox/downloads/file/4401439/localcdn_fork_of_decentraleyes-latest.xpi
->     - [Video Download Helper](https://addons.mozilla.org/en-US/firefox/addon/video-downloadhelper/) - https://addons.mozilla.org/firefox/downloads/file/4347883/video_downloadhelper-latest.xpi
->     - [PDF Mage](https://addons.mozilla.org/en-US/firefox/addon/pdf-mage/) - https://addons.mozilla.org/firefox/downloads/file/3866641/pdf_mage-latest.xpi
->     - [Go To Playing Tab](https://addons.mozilla.org/en-US/firefox/addon/go-to-playing-tab-2/) - https://addons.mozilla.org/firefox/downloads/file/3047196/go_to_playing_tab_2-latest.xpi
->     - [Return YouTube Dislikes](https://addons.mozilla.org/en-US/firefox/addon/return-youtube-dislikes/) - https://addons.mozilla.org/firefox/downloads/file/4371820/return_youtube_dislikes-latest.xpi
->     - [600% Sound Volume](https://addons.mozilla.org/en-US/firefox/addon/600-sound-volume/) - https://addons.mozilla.org/firefox/downloads/file/4396669/600_sound_volume-latest.xpi
->     - [Augmented Steam](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/) - https://addons.mozilla.org/firefox/downloads/file/4403715/augmented_steam-latest.xpi
->     - [CivitAI Downloader](https://addons.mozilla.org/en-US/firefox/addon/civit-model-downloader/) - https://addons.mozilla.org/firefox/downloads/file/4324821/civit_model_downloader-latest.xpi
+>     - BitWarden: [Page](https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/), [Download](https://addons.mozilla.org/firefox/downloads/file/4407804/bitwarden_password_manager-latest.xpi)
+>     - uBlock Origin: [Page](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/), [Download](https://addons.mozilla.org/firefox/downloads/file/4391011/ublock_origin-latest.xpi)
+>     - SponsorBlock: [Page](https://addons.mozilla.org/en-US/firefox/addon/sponsorblock/), [Download](https://addons.mozilla.org/firefox/downloads/file/4404647/sponsorblock-latest.xpi)
+>     - Enhancer for YouTube: [Page](https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/), [Download](https://addons.mozilla.org/firefox/downloads/file/4393561/enhancer_for_youtube-latest.xpi)
+>     - BlockTube: [Page](https://addons.mozilla.org/en-US/firefox/addon/blocktube/), [Download](https://addons.mozilla.org/firefox/downloads/file/4401602/blocktube-latest.xpi)
+>     - LocalCDN: [Page](https://addons.mozilla.org/en-US/firefox/addon/localcdn-fork-of-decentraleyes/), [Download](https://addons.mozilla.org/firefox/downloads/file/4401439/localcdn_fork_of_decentraleyes-latest.xpi)
+>     - Video Download Helper: [Page](https://addons.mozilla.org/en-US/firefox/addon/video-downloadhelper/), [Download](https://addons.mozilla.org/firefox/downloads/file/4347883/video_downloadhelper-latest.xpi)
+>     - PDF Mage: [Page](https://addons.mozilla.org/en-US/firefox/addon/pdf-mage/), [Download](https://addons.mozilla.org/firefox/downloads/file/3866641/pdf_mage-latest.xpi)
+>     - Go To Playing Tab: [Page](https://addons.mozilla.org/en-US/firefox/addon/go-to-playing-tab-2/), [Download](https://addons.mozilla.org/firefox/downloads/file/3047196/go_to_playing_tab_2-latest.xpi)
+>     - Return YouTube Dislikes: [Page](https://addons.mozilla.org/en-US/firefox/addon/return-youtube-dislikes/), [Download](https://addons.mozilla.org/firefox/downloads/file/4371820/return_youtube_dislikes-latest.xpi)
+>     - 600% Sound Volume: [Page](https://addons.mozilla.org/en-US/firefox/addon/600-sound-volume/), [Download](https://addons.mozilla.org/firefox/downloads/file/4396669/600_sound_volume-latest.xpi)
+>     - Augmented Steam: [Page](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/), [Download](https://addons.mozilla.org/firefox/downloads/file/4403715/augmented_steam-latest.xpi)
+>     - CivitAI Downloader: [Page](https://addons.mozilla.org/en-US/firefox/addon/civit-model-downloader/), [Download](https://addons.mozilla.org/firefox/downloads/file/4324821/civit_model_downloader-latest.xpi)
 > * **Brave**
   ```bash
 	sudo nala install curl -y
