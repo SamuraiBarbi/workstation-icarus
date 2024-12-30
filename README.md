@@ -279,6 +279,10 @@ sudo reboot now
   sudo nala update && sudo nala install obs-studio -y
   ```
 > * Bottles
+  ```bash
+  flatpak install flathub com.usebottles.bottles
+  flatpak run .com.usebottles.bottles
+  ```
 > * OnlyOffice
   ```bash
   flatpak install flathub org.onlyoffice.desktopeditors
