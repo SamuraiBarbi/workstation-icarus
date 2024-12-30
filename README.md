@@ -317,6 +317,13 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
 >     - [Cline](https://marketplace.visualstudio.com/items?itemName=saoudrizwan.claude-dev)
 >     - [Continue](https://marketplace.visualstudio.com/items?itemName=Continue.continue)
 >     - [Codeium](https://marketplace.visualstudio.com/items?itemName=Codeium.codeium)
+> * Windsurf
+  ```bash
+  curl -fsSL "https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/windsurf.gpg" | sudo gpg --dearmor -o /usr/share/keyrings/windsurf-stable-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/windsurf-stable-archive-keyring.gpg arch=amd64] https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/apt stable main" | sudo tee /etc/apt/sources.list.d/windsurf.list > /dev/null
+  sudo apt-get update
+  sudo apt-get upgrade windsurf
+  ```
 > * Tabby.sh
 > * WezTerm
 
