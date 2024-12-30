@@ -1080,8 +1080,45 @@ Run cmd as administrator
 
 ```bash
 C:\Install\Install-x64.bat
+```
+
+Install official GPU drivers for the GPU that was passed through, in my case Nvidia's GeForce experience and then the Nvidia drivers. Reboot the Windows guest and double check to make sure to set the audio output to Scream.
+
+Plug in hdmi dummy plug into the GPU that the Windows guest will be using so that the passed through GPU will recognize that a display is connected. I used a 4k capable hdmi dummy plug.
+
+Disable Basic Display Adapter in devices and restart the virtual machine. This step is imperative because if we do not disable the Basic Display Adaptor, the passed through GPU will not activate and it needs to activate in order for the Looking Glass host application  to run
 
 
+#### Additional Notes
+If you have issues with any audio ports not showing up in Linux
+alsamixer
+F6 to select the audio device you want to configure
+Press LEFT and RIGHT arrow keys to navigate between inputs and options
+Press M to unmute any inputs which have an MM
+If Auto Mute option is enabled, navigate to it an hit the DOWN arrow key to diable it
+sudo alsactl store
+pulseaudio -k && sudo alsa force-reload
+Unplug the previous affected inputs and plug them back in
 
+Getting system information for Linux host
+	lshw
+	lscpu
+	lspci
+	lsscsi
+	lsusb
+	lsblk
+	df -h
+	fdisk -l
+	dmesg
+
+
+#### Monitor Nvidia GPU temps for host
+```bash
+watch -n 2 nvidia-smi
+```
+
+#### Monitor CPU temps for host
+```bash
+watch -n 2 sensors
 ```
 
