@@ -287,14 +287,18 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
   ```bash
   curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
   echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-  sudo apt-get update && sudo apt-get install spotify-client
+  sudo apt-get update && sudo nala install spotify-client -y
   ```
 > * VLC Player
   ```bash
   sudo apt update
-  sudo apt install vlc 
+  sudo nala install vlc -y
   ```
 > * OBS Studio
+  ```bash
+  sudo apt update
+  sudo nala install obs-studio -y
+  ```
 > * Bottles
 > * OnlyOffice
 > * GIMP
@@ -302,6 +306,11 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
 > * DBeaver
 > * VMware Workstation
 > * Visual Studio Code
+  ```bash
+  wget -O $HOME/Downloads/vscode.latest.deb https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+  chmod +x $HOME/Downloads/vscode.latest.deb
+  sudo dpkg -i $HOME/Downloads/vscode.latest.deb
+  ```
 >   - Extensions:
 >     - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 >     - [Roo Cline](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline)
