@@ -287,23 +287,26 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
   ```bash
   curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
   echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-  sudo apt-get update && sudo nala install spotify-client -y
+  sudo nala update && sudo nala install spotify-client -y
   ```
 > * VLC Player
   ```bash
-  sudo nala update
-  sudo nala install vlc -y
+  sudo nala update && sudo nala install vlc -y
   ```
 > * OBS Studio
   ```bash
-  sudo nala update
-  sudo nala install obs-studio -y
+  sudo nala update && sudo nala install obs-studio -y
   ```
 > * Bottles
 > * OnlyOffice
 > * GIMP
 > * Audacity
 > * DBeaver
+  ```bash
+  wget -qO $HOME/Downloads/dbeaver.latest.deb https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
+  chmod +x $HOME/Downloads/dbeaver.latest.deb
+  sudo dpkg -i $HOME/Downloads/dbeaver.latest.deb
+  ```  
 > * VMware Workstation
 > * Visual Studio Code
 >   - Extensions:
@@ -321,8 +324,7 @@ Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
   ```bash
   curl -fsSL "https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/windsurf.gpg" | sudo gpg --dearmor -o /usr/share/keyrings/windsurf-stable-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/windsurf-stable-archive-keyring.gpg arch=amd64] https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/apt stable main" | sudo tee /etc/apt/sources.list.d/windsurf.list > /dev/null
-  sudo nala update
-  sudo nala upgrade windsurf
+  sudo nala update && udo nala install windsurf -y
   ```
 > * Tabby.sh
   ```bash
@@ -334,8 +336,7 @@ echo "deb [signed-by=/usr/share/keyrings/windsurf-stable-archive-keyring.gpg arc
   ```bash
   curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
   echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
-  sudo nala update
-  sudo nala install wezterm
+  sudo nala update && sudo nala install wezterm -y
   ```
 
 
