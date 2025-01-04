@@ -178,6 +178,24 @@ sudo nala install nvidia-container-toolkit -y
 ```
 
 
+#### Installing Brew
+We need to install Brew
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Next we need to configure Brew
+``` bash
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.profile
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+```
+
+Now verify our Brew installation was successful
+```bash
+brew doctor
+```
+
+
 #### Installing Nvidia Drivers
 
 We need to make sure that we open **Driver Manager** and **install the latest Nvidia drivers**. At the time of this writing nvidia-driver-535 was the latest.
