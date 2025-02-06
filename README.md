@@ -122,9 +122,9 @@ sudo nano /etc/fstab
 Then we paste the contents at the end of the file
 
 ```bash
-192.168.2.20:/mnt/atlas-storage/atlas.backup/    $HOME/.mnt/media/.atlas.backup/    nfs    auto,nofail,noatime,nolock,intr,proto=tcp,hard,actimeo=1800,port=2049    0    0
-192.168.2.20:/mnt/atlas-storage/atlas.media-server/    $HOME/.mnt/media/.atlas.media-server/ nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
-192.168.2.20:/mnt/atlas-storage/atlas.sort/    $HOME/.mnt/media/.atlas.sort/    nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
+192.168.2.20:/mnt/atlas-storage/atlas.backup/    /home/owner/.mnt/media/.atlas.backup/    nfs    auto,nofail,noatime,nolock,intr,proto=tcp,hard,actimeo=1800,port=2049    0    0
+192.168.2.20:/mnt/atlas-storage/atlas.media-server/    /home/owner/.mnt/media/.atlas.media-server/ nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
+192.168.2.20:/mnt/atlas-storage/atlas.sort/    /home/owner/.mnt/media/.atlas.sort/    nfs    auto,nofail,noatime,nolock,intr,tcp,hard,actimeo=1800 0 0
 ```
 
 Restart the machine for the changes to take effect and the shares to be auto mounted
@@ -168,11 +168,21 @@ newgrp docker
 docker run hello-world
 docker compose version
 sudo systemctl status docker
+```
 
+#### Install Nvidia Container Toolkit
+First we'll need to add the package respository
+
+```bash
 curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
   && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
     sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
     sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+```
+
+Then we will update our package repository and install Nvidia Container Toolkit
+
+```bash
 sudo nala update
 sudo nala install nvidia-container-toolkit -y
 ```
