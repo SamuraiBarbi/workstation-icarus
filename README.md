@@ -281,6 +281,11 @@ sudo reboot now
 >     - [Augmented Steam](https://chromewebstore.google.com/detail/augmented-steam/dnhpnfgdlenaccegplpojghhmaamnnfp)
 >     - [CivitAI Downloader](https://chromewebstore.google.com/detail/civit-model-downloader/dndabdgaagbfhbfhjkocfafjjabgmhea)
 > * **Chrome**
+  ```bash
+  wget -qO $HOME/Downloads/chrome.latest.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  chmod +x $HOME/Downloads/chrome.latest.deb
+  sudo dpkg -i $HOME/Downloads/chrome.latest.deb
+  ```
 >   - Extensions:
 >     - [BitWarden](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb)
 >     - [uBlock Origin](https://chromewebstore.google.com/detail/ublock/epcnnfbjfcgphgdmggkamkmgojdagdnn)
