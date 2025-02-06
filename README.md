@@ -327,13 +327,10 @@ sudo reboot now
 > * **Bottles**
   ```bash
   flatpak install flathub com.usebottles.bottles
-  flatpak run .com.usebottles.bottles
   ```
 > * **OnlyOffice**
   ```bash
-  flatpak install flathub org.onlyoffice.desktopeditors
-  flatpak run org.onlyoffice.desktopeditors
-  ```
+  flatpak install flathub org.onlyoffice.desktopeditors  ```
 > * **GIMP**
   ```bash
   sudo nala update && sudo nala install gimp -y
