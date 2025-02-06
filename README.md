@@ -394,15 +394,6 @@ echo "deb [signed-by=/usr/share/keyrings/windsurf-stable-archive-keyring.gpg arc
   chmod +x $HOME/Downloads/tabby.sh.latest.deb
   sudo dpkg -i $HOME/Downloads/tabby.sh.latest.deb
   ```
-> * **WezTerm**
-  ```bash
-  curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
-  echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
-  sudo nala update && sudo nala install wezterm -y
-  ```
-
-
-
 
 #### Install Video Download Helper Companion 
 ```bash
