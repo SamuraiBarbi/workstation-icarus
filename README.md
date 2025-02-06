@@ -80,12 +80,14 @@ sudo apt install fastfetch
 cd $HOME/Downloads/
 git clone https://github.com/wmutschl/timeshift-autosnap-apt.git $HOME/Downloads/timeshift-autosnap-apt
 cd $HOME/Downloads/timeshift-autosnap-apt
-sudo make Install
+sudo make install
+sudo timeshift-autosnap-apt
 
 cd $HOME/Downloads/
 git clone https://github.com/Antynea/grub-btrfs.git $HOME/Downloads/grub-btrfs
 cd $HOME/Downloads/grub-btrfs
 sudo make install
+sudo systemctl enable grub-btrfsd
 ```
 
 Run Timeshift and complete the Setup Wizard using the following:
