@@ -70,7 +70,9 @@ sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
 sudo apt-get install nala -y
 
-sudo nala install git git-lfs cmake build-essential nfs-common mediainfo ffmpeg -y 
+sudo nala install git git-lfs cmake build-essential nfs-common mediainfo ffmpeg -y
+git lfs install
+
 sudo nala install nvtop htop iotop -y
 
 sudo add-apt-repository ppa:zhangsongcui3371/fastfetch -y
