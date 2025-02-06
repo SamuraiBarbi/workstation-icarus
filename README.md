@@ -330,7 +330,8 @@ sudo reboot now
   ```
 > * **OnlyOffice**
   ```bash
-  flatpak install flathub org.onlyoffice.desktopeditors  ```
+  flatpak install flathub org.onlyoffice.desktopeditors
+  ```
 > * **GIMP**
   ```bash
   sudo nala update && sudo nala install gimp -y
