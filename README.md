@@ -90,6 +90,7 @@ git clone https://github.com/Antynea/grub-btrfs.git $HOME/Downloads/grub-btrfs
 cd $HOME/Downloads/grub-btrfs
 sudo make install
 sudo systemctl enable grub-btrfsd
+sudo grub-mkconfig
 ```
 
 Run Timeshift and complete the Setup Wizard using the following:
