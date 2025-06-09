@@ -358,6 +358,13 @@ sudo reboot now
   wget -qO $HOME/Downloads/dbeaver.latest.deb https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
   chmod +x $HOME/Downloads/dbeaver.latest.deb
   sudo dpkg -i $HOME/Downloads/dbeaver.latest.deb
+  ```
+> * **YouTube DLP**
+  ```
+  mkdir $HOME/Documents/apps/YouTubeDLP
+  cd $HOME/Documents/apps/YouTubeDLP
+  wget -qO $HOME/Documents/apps/YouTubeDLP/yt-dlp_linux https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux
+  chmod +x $HOME/Documents/apps/YouTubeDLP/yt-dlp_linux
   ```  
 > * **VMware Workstation Pro**
     - Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
