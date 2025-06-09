@@ -274,50 +274,35 @@ sudo reboot now
 	sudo mkdir -p $EXTENSIONS_PATH
 	
 	# BitWarden
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/nngceckbapebfimnlniiiahkandclblb.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/nngceckbapebfimnlniiiahkandclblb.json"	
 	# uBlock Origin
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/epcnnfbjfcgphgdmggkamkmgojdagdnn.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/epcnnfbjfcgphgdmggkamkmgojdagdnn.json"	
 	# SponsorBlock
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/mnjggcdmjocbbbhaepdhchncahnbgone.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/mnjggcdmjocbbbhaepdhchncahnbgone.json"	
 	# Enhancer For YouTube
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/ponfpcnoihfmfllpaingbgckeeldkhle.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/ponfpcnoihfmfllpaingbgckeeldkhle.json"	
 	# YouTube Row Fixer
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/kehjfphhkfppnnjhdfhanmehkegdppho.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/kehjfphhkfppnnjhdfhanmehkegdppho.json"	
 	# BlockTube
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/bbeaicapbccfllodepmimpkgecanonai.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/bbeaicapbccfllodepmimpkgecanonai.json"	
 	# LocalCDN
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/njdfdhgcmkocbgbhcioffdbicglldapd.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/njdfdhgcmkocbgbhcioffdbicglldapd.json"	
 	# AutoTab Discard
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/jhnleheckmknfcgijgkadoemagpecfol.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/jhnleheckmknfcgijgkadoemagpecfol.json"	
 	# Video Download Helper
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/lmjnegcaeklhafolokijcfjliaokphfk.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/lmjnegcaeklhafolokijcfjliaokphfk.json"	
 	# Media Harvest Twitter Media Downloader
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/hpcgabhdlnapolkkjpejieegfpehfdok.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/hpcgabhdlnapolkkjpejieegfpehfdok.json"	
 	# PDF Mage
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/gknphemhpcknkhegndlihchfonpdcben.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/gknphemhpcknkhegndlihchfonpdcben.json"	
 	# Go To Playing Tab
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/hmbhamadknmmkapmhbldodoajkcggcml.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/hmbhamadknmmkapmhbldodoajkcggcml.json"	
 	# Return YouTube Dislikes
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/gebbhagfogifgggkldgodflihgfeippi.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/gebbhagfogifgggkldgodflihgfeippi.json"	
 	# 600% Sound Volume
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/nmigaijibiabddkkmjhlehchpmgbokfj.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/nmigaijibiabddkkmjhlehchpmgbokfj.json"	
 	# Augmented Steam
-	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/dnhpnfgdlenaccegplpojghhmaamnnfp.json"
-	
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/dnhpnfgdlenaccegplpojghhmaamnnfp.json"	
 	# CivitAI Downloader
 	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/dndabdgaagbfhbfhjkocfafjjabgmhea.json"
   ```
