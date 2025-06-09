@@ -241,6 +241,11 @@ sudo reboot now
 ```
 
 #### Additional Apps To Install
+> * **NodeJS and NPM**
+  ```
+  sudo nalal install nodejs -y
+  sudo nalal install npm -y
+  ```
 > * **Thunderbird**
 > * **Firefox**
 >   - Extensions:
