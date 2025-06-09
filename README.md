@@ -328,6 +328,42 @@ sudo reboot now
   wget -qO $HOME/Downloads/chrome.latest.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   chmod +x $HOME/Downloads/chrome.latest.deb
   sudo dpkg -i $HOME/Downloads/chrome.latest.deb
+
+  EXTENSIONS_PATH="/opt/google/chrome/extensions"
+  sudo mkdir -p $EXTENSIONS_PATH
+  
+  # BitWarden
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/nngceckbapebfimnlniiiahkandclblb.json"	
+  # uBlock Origin
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/epcnnfbjfcgphgdmggkamkmgojdagdnn.json"	
+  # SponsorBlock
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/mnjggcdmjocbbbhaepdhchncahnbgone.json"	
+  # Enhancer For YouTube
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/ponfpcnoihfmfllpaingbgckeeldkhle.json"	
+  # YouTube Row Fixer
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/kehjfphhkfppnnjhdfhanmehkegdppho.json"	
+  # BlockTube
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/bbeaicapbccfllodepmimpkgecanonai.json"	
+  # LocalCDN
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/njdfdhgcmkocbgbhcioffdbicglldapd.json"	
+  # AutoTab Discard
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/jhnleheckmknfcgijgkadoemagpecfol.json"	
+  # Video Download Helper
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/lmjnegcaeklhafolokijcfjliaokphfk.json"	
+  # Media Harvest Twitter Media Downloader
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/hpcgabhdlnapolkkjpejieegfpehfdok.json"	
+  # PDF Mage
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/gknphemhpcknkhegndlihchfonpdcben.json"	
+  # Go To Playing Tab
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/hmbhamadknmmkapmhbldodoajkcggcml.json"	
+  # Return YouTube Dislikes
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/gebbhagfogifgggkldgodflihgfeippi.json"	
+  # 600% Sound Volume
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/nmigaijibiabddkkmjhlehchpmgbokfj.json"	
+  # Augmented Steam
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/dnhpnfgdlenaccegplpojghhmaamnnfp.json"	
+  # CivitAI Downloader
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/dndabdgaagbfhbfhjkocfafjjabgmhea.json"
   ```
 >   - Extensions:
 >     - [BitWarden](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb)
