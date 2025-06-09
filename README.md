@@ -365,7 +365,23 @@ sudo reboot now
   cd $HOME/Documents/apps/YouTubeDLP
   wget -qO $HOME/Documents/apps/YouTubeDLP/yt-dlp_linux https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux
   chmod +x $HOME/Documents/apps/YouTubeDLP/yt-dlp_linux
-  ```  
+  ```
+> * **Stability Matrix**
+  ```
+  mkdir $HOME/Documents/apps/StabilityMatrix
+  cd $HOME/Documents/apps/StabilityMatrix
+  wget -qO $HOME/Documents/apps/StabilityMatrix/StabilityMatrix-linux-x64.zip https://github.com/LykosAI/StabilityMatrix/releases/latest/download/StabilityMatrix-linux-x64.zip
+  unzip -o $HOME/Documents/apps/StabilityMatrix/StabilityMatrix-linux-x64.zip
+  chmod +x $HOME/Documents/apps/StabilityMatrix/StabilityMatrix.AppImage
+  rm $HOME/Documents/apps/StabilityMatrix/StabilityMatrix-linux-x64.zip
+  ```
+> * **LM Studio**
+  ```
+  mkdir $HOME/Documents/apps/LMStudio
+  cd $HOME/Documents/apps/LMStudio
+  wget -qO $HOME/Documents/apps/LMStudio/LM-Studio-0.3.16-8-x64.AppImage https://installers.lmstudio.ai/linux/x64/0.3.16-8/LM-Studio-0.3.16-8-x64.AppImage
+  chmod +x $HOME/Documents/apps/LMStudio/LM-Studio-0.3.16-8-x64.AppImage
+  ```
 > * **VMware Workstation Pro**
     - Use the License Key: **MC60H-DWHD5-H80U9-6V85M-8280D**
   ```bash
