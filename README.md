@@ -475,7 +475,7 @@ sudo reboot now
   sudo cp -v vmmon.tar vmnet.tar /usr/lib/vmware/modules/source
   sudo vmware-modconfig --console --install-all history
   ```
-> * **Visual Studio Code**
+> * **[Visual Studio Code](https://code.visualstudio.com/)**
 >   - Extensions:
 >     - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 >     - [Roo Cline](https://marketplace.visualstudio.com/items?itemName=RooVeterinaryInc.roo-cline)
@@ -496,7 +496,7 @@ sudo reboot now
 echo "deb [signed-by=/usr/share/keyrings/windsurf-stable-archive-keyring.gpg arch=amd64] https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/apt stable main" | sudo tee /etc/apt/sources.list.d/windsurf.list > /dev/null
   sudo nala update && sudo nala install windsurf -y
   ```
-> * **Zed**
+> * **[Zed](https://zed.dev/)**
   ```bash
   curl -f https://zed.dev/install.sh | sh
   ```
