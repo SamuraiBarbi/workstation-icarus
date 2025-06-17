@@ -393,16 +393,13 @@ sudo reboot now
   chmod +x $HOME/Downloads/discord.latest.deb
   sudo dpkg -i $HOME/Downloads/discord.latest.deb
   ```
-> * **[Spotify](https://spotify.com/)**
-  Add the package repository
-  
+> * **[Spotify](https://spotify.com/)**  
+  - Add the package repository  
   ```bash
   curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
   echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-  ```
-  
-  Update our packages list and install Spotify
-  
+  ```  
+  - Update our packages list and install Spotify  
   ```bash
   sudo nala update && sudo nala install spotify-client -y
   ```
