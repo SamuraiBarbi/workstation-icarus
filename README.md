@@ -496,6 +496,10 @@ sudo reboot now
 echo "deb [signed-by=/usr/share/keyrings/windsurf-stable-archive-keyring.gpg arch=amd64] https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/apt stable main" | sudo tee /etc/apt/sources.list.d/windsurf.list > /dev/null
   sudo nala update && sudo nala install windsurf -y
   ```
+> * **Zed**
+  ```bash
+  curl -f https://zed.dev/install.sh | sh
+  ```
 > * **Tabby.sh**
   ```bash
   wget -qO $HOME/Downloads/tabby.sh.latest.deb https://github.com/Eugeny/tabby/releases/download/v1.0.216/tabby-1.0.216-linux-x64.deb
