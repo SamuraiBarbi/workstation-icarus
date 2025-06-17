@@ -265,7 +265,7 @@ sudo reboot now
 >     - 600% Sound Volume: [Page](https://addons.mozilla.org/en-US/firefox/addon/600-sound-volume/), [Download](https://addons.mozilla.org/firefox/downloads/file/4396669/600_sound_volume-latest.xpi)
 >     - Augmented Steam: [Page](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/), [Download](https://addons.mozilla.org/firefox/downloads/file/4403715/augmented_steam-latest.xpi)
 >     - CivitAI Downloader: [Page](https://addons.mozilla.org/en-US/firefox/addon/civit-model-downloader/), [Download](https://addons.mozilla.org/firefox/downloads/file/4324821/civit_model_downloader-latest.xpi)
-> * **Brave**
+> * **[Brave](https://brave.com/)**
   ```bash
 	sudo nala install curl -y
 	
@@ -328,7 +328,7 @@ sudo reboot now
 >     - [600% Sound Volume](https://chromewebstore.google.com/detail/sound-booster-increase-vo/nmigaijibiabddkkmjhlehchpmgbokfj)
 >     - [Augmented Steam](https://chromewebstore.google.com/detail/augmented-steam/dnhpnfgdlenaccegplpojghhmaamnnfp)
 >     - [CivitAI Downloader](https://chromewebstore.google.com/detail/civit-model-downloader/dndabdgaagbfhbfhjkocfafjjabgmhea)
-> * **Chrome**
+> * **[Chrome](https://www.google.com/chrome/)**
   ```bash
   wget -qO $HOME/Downloads/chrome.latest.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   chmod +x $HOME/Downloads/chrome.latest.deb
@@ -387,13 +387,13 @@ sudo reboot now
 >     - [600% Sound Volume](https://chromewebstore.google.com/detail/sound-booster-increase-vo/nmigaijibiabddkkmjhlehchpmgbokfj)
 >     - [Augmented Steam](https://chromewebstore.google.com/detail/augmented-steam/dnhpnfgdlenaccegplpojghhmaamnnfp)
 >     - [CivitAI Downloader](https://chromewebstore.google.com/detail/civit-model-downloader/dndabdgaagbfhbfhjkocfafjjabgmhea)
-> * **Discord**
+> * **[Discord](https://discord.com/)**
   ```bash
   wget -qO $HOME/Downloads/discord.latest.deb https://discord.com/api/download?platform=linux
   chmod +x $HOME/Downloads/discord.latest.deb
   sudo dpkg -i $HOME/Downloads/discord.latest.deb
   ```
-> * **Spotify**
+> * **[Spotify](https://spotify.com/)**
   Add the package repository
   
   ```bash
@@ -406,44 +406,44 @@ sudo reboot now
   ```bash
   sudo nala update && sudo nala install spotify-client -y
   ```
-> * **VLC Player**
+> * **[VLC Player](https://www.videolan.org/vlc/)**
   ```bash
   sudo nala update && sudo nala install vlc -y
   ```
-> * **OBS Studio**
+> * **[OBS Studio](https://obsproject.com/)**
   ```bash
   sudo nala update && sudo nala install obs-studio -y
   ```
-> * **Bottles**
+> * **[Bottles](https://usebottles.com/)**
   ```bash
   flatpak install flathub com.usebottles.bottles
   ```
-> * **OnlyOffice**
+> * **[OnlyOffice](https://www.onlyoffice.com/)**
   ```bash
   flatpak install flathub org.onlyoffice.desktopeditors
   ```
-> * **GIMP**
+> * **[GIMP](https://www.gimp.org/)**
   ```bash
   sudo nala update && sudo nala install gimp -y
   ```
-> * **Audacity**
+> * **[Audacity](https://www.audacityteam.org/)**
   ```bash
   sudo nala update && sudo nala install audacity -y
   ```
-> * **DBeaver**
+> * **[DBeaver](https://dbeaver.io/)**
   ```bash
   wget -qO $HOME/Downloads/dbeaver.latest.deb https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb
   chmod +x $HOME/Downloads/dbeaver.latest.deb
   sudo dpkg -i $HOME/Downloads/dbeaver.latest.deb
   ```
-> * **YouTube DLP**
+> * **[YouTube DLP](https://github.com/yt-dlp/yt-dlp)**
   ```
   mkdir $HOME/Documents/apps/YouTubeDLP
   cd $HOME/Documents/apps/YouTubeDLP
   wget -qO $HOME/Documents/apps/YouTubeDLP/yt-dlp_linux https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux
   chmod +x $HOME/Documents/apps/YouTubeDLP/yt-dlp_linux
   ```
-> * **Stability Matrix**
+> * **[Stability Matrix](https://github.com/LykosAI/StabilityMatrix)**
   ```
   mkdir $HOME/Documents/apps/StabilityMatrix
   cd $HOME/Documents/apps/StabilityMatrix
@@ -452,7 +452,7 @@ sudo reboot now
   chmod +x $HOME/Documents/apps/StabilityMatrix/StabilityMatrix.AppImage
   rm $HOME/Documents/apps/StabilityMatrix/StabilityMatrix-linux-x64.zip
   ```
-> * **LM Studio**
+> * **[LM Studio](https://lmstudio.ai/)**
   ```
   mkdir $HOME/Documents/apps/LMStudio
   cd $HOME/Documents/apps/LMStudio
@@ -490,7 +490,7 @@ sudo reboot now
   chmod +x $HOME/Downloads/vscode.latest.deb
   sudo dpkg -i $HOME/Downloads/vscode.latest.deb
   ```
-> * **Windsurf**
+> * **[Windsurf](https://windsurf.com/)**
   ```bash
   curl -fsSL "https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/windsurf.gpg" | sudo gpg --dearmor -o /usr/share/keyrings/windsurf-stable-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/windsurf-stable-archive-keyring.gpg arch=amd64] https://windsurf-stable.codeiumdata.com/wVxQEIWkwPUEAGf3/apt stable main" | sudo tee /etc/apt/sources.list.d/windsurf.list > /dev/null
@@ -500,7 +500,7 @@ echo "deb [signed-by=/usr/share/keyrings/windsurf-stable-archive-keyring.gpg arc
   ```bash
   curl -f https://zed.dev/install.sh | sh
   ```
-> * **Tabby.sh**
+> * **[Tabby.sh](https://tabby.sh/)**
   ```bash
   wget -qO $HOME/Downloads/tabby.sh.latest.deb https://github.com/Eugeny/tabby/releases/download/v1.0.216/tabby-1.0.216-linux-x64.deb
   chmod +x $HOME/Downloads/tabby.sh.latest.deb
