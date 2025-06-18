@@ -265,6 +265,7 @@ sudo reboot now
 >     - 600% Sound Volume: [Page](https://addons.mozilla.org/en-US/firefox/addon/600-sound-volume/), [Download](https://addons.mozilla.org/firefox/downloads/file/4396669/600_sound_volume-latest.xpi)
 >     - Augmented Steam: [Page](https://addons.mozilla.org/en-US/firefox/addon/augmented-steam/), [Download](https://addons.mozilla.org/firefox/downloads/file/4403715/augmented_steam-latest.xpi)
 >     - CivitAI Downloader: [Page](https://addons.mozilla.org/en-US/firefox/addon/civit-model-downloader/), [Download](https://addons.mozilla.org/firefox/downloads/file/4324821/civit_model_downloader-latest.xpi)
+>     - Straight to the Web: [Page](https://addons.mozilla.org/en-US/firefox/addon/straight-to-the-web/), [Download](https://addons.mozilla.org/firefox/downloads/file/4421658/straight_to_the_web-latest.xpi)
 > * **[Brave](https://brave.com/)**
   ```bash
 	sudo nala install curl -y
