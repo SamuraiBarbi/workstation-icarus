@@ -311,6 +311,8 @@ sudo reboot now
 	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/dnhpnfgdlenaccegplpojghhmaamnnfp.json"	
 	# CivitAI Downloader
 	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/dndabdgaagbfhbfhjkocfafjjabgmhea.json"
+	# Deshitify Google Search
+	echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/binnddcikmdkgcmfajmpomhocammeekp.json"
   ```
 >   - Extensions:
 >     - [BitWarden](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb)
@@ -329,6 +331,7 @@ sudo reboot now
 >     - [600% Sound Volume](https://chromewebstore.google.com/detail/sound-booster-increase-vo/nmigaijibiabddkkmjhlehchpmgbokfj)
 >     - [Augmented Steam](https://chromewebstore.google.com/detail/augmented-steam/dnhpnfgdlenaccegplpojghhmaamnnfp)
 >     - [CivitAI Downloader](https://chromewebstore.google.com/detail/civit-model-downloader/dndabdgaagbfhbfhjkocfafjjabgmhea)
+>     - [Deshitify Google Search](https://chromewebstore.google.com/detail/deshittify-google-search/binnddcikmdkgcmfajmpomhocammeekp)
 > * **[Chrome](https://www.google.com/chrome/)**
   ```bash
   wget -qO $HOME/Downloads/chrome.latest.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -370,6 +373,8 @@ sudo reboot now
   echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/dnhpnfgdlenaccegplpojghhmaamnnfp.json"	
   # CivitAI Downloader
   echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/dndabdgaagbfhbfhjkocfafjjabgmhea.json"
+  # Deshitify Google Search
+  echo '{ "external_update_url": "https://clients2.google.com/service/update2/crx" }' | sudo tee "$EXTENSIONS_PATH/binnddcikmdkgcmfajmpomhocammeekp.json"
   ```
 >   - Extensions:
 >     - [BitWarden](https://chromewebstore.google.com/detail/bitwarden-password-manage/nngceckbapebfimnlniiiahkandclblb)
@@ -388,6 +393,7 @@ sudo reboot now
 >     - [600% Sound Volume](https://chromewebstore.google.com/detail/sound-booster-increase-vo/nmigaijibiabddkkmjhlehchpmgbokfj)
 >     - [Augmented Steam](https://chromewebstore.google.com/detail/augmented-steam/dnhpnfgdlenaccegplpojghhmaamnnfp)
 >     - [CivitAI Downloader](https://chromewebstore.google.com/detail/civit-model-downloader/dndabdgaagbfhbfhjkocfafjjabgmhea)
+>     - [Deshitify Google Search](https://chromewebstore.google.com/detail/deshittify-google-search/binnddcikmdkgcmfajmpomhocammeekp)
 > * **[Discord](https://discord.com/)**
   ```bash
   wget -qO $HOME/Downloads/discord.latest.deb https://discord.com/api/download?platform=linux
