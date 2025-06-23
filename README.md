@@ -446,6 +446,7 @@ sudo reboot now
   cd $HOME/Documents/apps/YouTubeDLP
   wget -qO $HOME/Documents/apps/YouTubeDLP/yt-dlp_linux https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux
   chmod +x $HOME/Documents/apps/YouTubeDLP/yt-dlp_linux
+  # To use $HOME/Documents/apps/YouTubeDLP/yt-dlp_linux -o "/home/owner/Videos/%(channel)s - %(upload_date)s - %(title)s.%(ext)s" "https://www.youtube.com/@AVoxintheVoid"
   ```
 > * **[Stability Matrix](https://github.com/LykosAI/StabilityMatrix)**
   ```
