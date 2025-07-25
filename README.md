@@ -480,6 +480,10 @@ sudo reboot now
   sudo cp -v vmmon.tar vmnet.tar /usr/lib/vmware/modules/source
   sudo vmware-modconfig --console --install-all history
   ```
+> * **[Coolify](https://github.com/coollabsio/coolify)**
+  ```bash
+  sudo curl -fsSL https://cdn.coollabs.io/coolify/install.sh | sudo bash
+  ```
 > * **[Visual Studio Code](https://code.visualstudio.com/)**
 >   - Extensions:
 >     - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
