@@ -252,7 +252,7 @@ sudo reboot now
 >     - BitWarden: [Page](https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/), [Download](https://addons.mozilla.org/firefox/downloads/file/4407804/bitwarden_password_manager-latest.xpi)
 >     - uBlock Origin: [Page](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/), [Download](https://addons.mozilla.org/firefox/downloads/file/4391011/ublock_origin-latest.xpi)
 >     - SponsorBlock: [Page](https://addons.mozilla.org/en-US/firefox/addon/sponsorblock/), [Download](https://addons.mozilla.org/firefox/downloads/file/4404647/sponsorblock-latest.xpi)
->     - Enhancer for YouTube: [Page](https://addons.mozilla.org/en-US/firefox/addon/enhancer-for-youtube/), [Download](https://addons.mozilla.org/firefox/downloads/file/4393561/enhancer_for_youtube-latest.xpi)
+>     - Enhancer for YouTube: [Page](https://www.mrfdev.com/enhancer-for-youtube), [Download](https://www.mrfdev.com/downloads/enhancer_for_youtube-2.0.130.1.xpi)
 >     - YouTube Row Fixer: [Page](https://addons.mozilla.org/en-US/firefox/addon/youtube-row-fixer-add-on/), [Download](https://addons.mozilla.org/firefox/downloads/file/4490348/youtube_row_fixer_add_on-1.0.2.xpi)
 >     - BlockTube: [Page](https://addons.mozilla.org/en-US/firefox/addon/blocktube/), [Download](https://addons.mozilla.org/firefox/downloads/file/4401602/blocktube-latest.xpi)
 >     - LocalCDN: [Page](https://addons.mozilla.org/en-US/firefox/addon/localcdn-fork-of-decentraleyes/), [Download](https://addons.mozilla.org/firefox/downloads/file/4401439/localcdn_fork_of_decentraleyes-latest.xpi)
