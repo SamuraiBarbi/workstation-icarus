@@ -258,7 +258,7 @@ sudo reboot now
 >     - LocalCDN: [Page](https://addons.mozilla.org/en-US/firefox/addon/localcdn-fork-of-decentraleyes/), [Download](https://addons.mozilla.org/firefox/downloads/file/4401439/localcdn_fork_of_decentraleyes-latest.xpi)
 >     - AutoTab Discord: [Page](https://addons.mozilla.org/en-US/firefox/addon/auto-tab-discard/), [Download](https://addons.mozilla.org/firefox/downloads/file/4045009/auto_tab_discard-latest.xpi)
 >     - Video Download Helper: [Page](https://addons.mozilla.org/en-US/firefox/addon/video-downloadhelper/), [Download](https://addons.mozilla.org/firefox/downloads/file/4347883/video_downloadhelper-latest.xpi)
->     - Media Harvest Twitter Media Downloader: [Page](https://github.com/EltonChou/TwitterMediaHarvest), [Download](https://github.com/EltonChou/TwitterMediaHarvest/releases/download/v4.2.9/mediaharvest@mediaharvest.app-v4.2.9.xpi)
+>     - Media Harvest Twitter Media Downloader: [Page](https://github.com/EltonChou/TwitterMediaHarvest), [Download](https://addons.mozilla.org/firefox/downloads/file/4649244/video_downloadhelper-10.1.6.2.xpi)
 >     - PDF Mage: [Page](https://addons.mozilla.org/en-US/firefox/addon/pdf-mage/), [Download](https://addons.mozilla.org/firefox/downloads/file/3866641/pdf_mage-latest.xpi)
 >     - Go To Playing Tab: [Page](https://addons.mozilla.org/en-US/firefox/addon/go-to-playing-tab-2/), [Download](https://addons.mozilla.org/firefox/downloads/file/3047196/go_to_playing_tab_2-latest.xpi)
 >     - Return YouTube Dislikes: [Page](https://addons.mozilla.org/en-US/firefox/addon/return-youtube-dislikes/), [Download](https://addons.mozilla.org/firefox/downloads/file/4371820/return_youtube_dislikes-latest.xpi)
