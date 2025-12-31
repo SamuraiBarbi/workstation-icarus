@@ -442,7 +442,7 @@ sudo reboot now
   ```
 > * **[YouTube DLP](https://github.com/yt-dlp/yt-dlp)**
   ```
-  mkdir $HOME/Documents/apps/YouTubeDLP
+  mkdir -p $HOME/Documents/apps/YouTubeDLP
   cd $HOME/Documents/apps/YouTubeDLP
   wget -qO $HOME/Documents/apps/YouTubeDLP/yt-dlp_linux https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux
   chmod +x $HOME/Documents/apps/YouTubeDLP/yt-dlp_linux
@@ -450,7 +450,7 @@ sudo reboot now
   ```
 > * **[Stability Matrix](https://github.com/LykosAI/StabilityMatrix)**
   ```
-  mkdir $HOME/Documents/apps/StabilityMatrix
+  mkdir -p $HOME/Documents/apps/StabilityMatrix
   cd $HOME/Documents/apps/StabilityMatrix
   wget -qO $HOME/Documents/apps/StabilityMatrix/StabilityMatrix-linux-x64.zip https://github.com/LykosAI/StabilityMatrix/releases/latest/download/StabilityMatrix-linux-x64.zip
   unzip -o $HOME/Documents/apps/StabilityMatrix/StabilityMatrix-linux-x64.zip
@@ -459,7 +459,7 @@ sudo reboot now
   ```
 > * **[LM Studio](https://lmstudio.ai/)**
   ```
-  mkdir $HOME/Documents/apps/LMStudio
+  mkdir -p $HOME/Documents/apps/LMStudio
   cd $HOME/Documents/apps/LMStudio
   wget -qO $HOME/Documents/apps/LMStudio/LM-Studio-0.3.16-8-x64.AppImage https://installers.lmstudio.ai/linux/x64/0.3.16-8/LM-Studio-0.3.16-8-x64.AppImage
   chmod +x $HOME/Documents/apps/LMStudio/LM-Studio-0.3.16-8-x64.AppImage
