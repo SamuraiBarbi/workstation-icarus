@@ -641,6 +641,409 @@ Use **%A - %B %d,  %Y %I:%M:%S %p** as preferred date format.
 When setting up **Online Accounts** keep in mind that you must be using the **Nouveou** video drivers because clicking Google in the providers list will not trigger the browser page to load if using Nvidia proprietary drivers. Use Nouveou drivers while getting online accounts set up and once finished switch back to using the **Nvidia** drivers via the **Driver Manager**
 
 
+# Rebuilding the Unsloth Studio model servers
+
+Copy-paste each block in order. **Nothing here needs saving as a script** — every block is a
+complete command or a `heredoc` that writes a file.
+
+Two models run at boot: a 9B on the GTX 1080 Ti (port 8887) and a 27B on the RTX 3090 (port 8888).
+
+**What is verified and what is not.** Everything below was read off the working machine — the unit
+files, the model files, the API keys, the saved overrides, the helper scripts — and the commands are
+the ones that machine is running. **The one thing I have not exercised end to end is a fresh
+`install.sh` followed by the auth steps**, because that would mean reinstalling Studio here. If a
+step fails, stop and read the error rather than continuing; the likely candidates are the
+`desktop_backend.json` token (step 5) and the two GPU UUIDs (step 0).
+
+---
+
+## 0. Prerequisites
+
+Confirm both GPUs are present and note their UUIDs. **The units pin by UUID, not index**, because
+CUDA's device order is reversed relative to `nvidia-smi` — an index would attach the wrong model to
+the wrong card.
+
+```bash
+nvidia-smi --query-gpu=index,name,memory.total,uuid --format=csv,noheader
+```
+
+This build expects:
+
+| card | UUID | used for |
+|---|---|---|
+| GTX 1080 Ti (sm_61) | `GPU-044142a9-2e56-e3b1-b0fa-6b5ab4562970` | the 9B |
+| RTX 3090 (sm_86) | `GPU-8fed8adf-de89-2c2f-3f63-2a27b8e73cd5` | the 27B |
+
+**If the UUIDs differ, substitute yours in steps 3 and 6.**
+
+Disk: about **35 GB** free — roughly 29 GB of models plus two llama.cpp bundles.
+
+```bash
+df -h /home/owner | tail -1
+```
+
+---
+
+## 1. Install Unsloth Studio
+
+```bash
+curl -fsSL https://unsloth.ai/install.sh | sh
+```
+
+This creates the venv at `~/.unsloth/studio/unsloth_studio` and the launcher at
+`~/.local/bin/unsloth`. Confirm:
+
+```bash
+~/.local/bin/unsloth --version
+```
+
+---
+
+## 2. Install the two llama.cpp bundles
+
+**Why two.** No published Unsloth bundle covers both cards: the default is built for sm 75–89 and has
+no kernels for the 1080 Ti's sm_61, and run unpinned the installer sees *both* GPUs and reports that
+no bundle covers this host. Each bundle is therefore installed into its own directory with the GPU
+pinned, and the 1080 Ti's is pointed at explicitly by its unit.
+
+```bash
+CUDA_VISIBLE_DEVICES=GPU-044142a9-2e56-e3b1-b0fa-6b5ab4562970 \
+  ~/.unsloth/studio/unsloth_studio/bin/python \
+  "$(find ~/.unsloth/studio/unsloth_studio/lib -name install_llama_prebuilt.py -print -quit)" \
+  --install-dir ~/.unsloth/llama.cpp-pascal --llama-backend cuda
+```
+
+```bash
+CUDA_VISIBLE_DEVICES=GPU-8fed8adf-de89-2c2f-3f63-2a27b8e73cd5 \
+  ~/.unsloth/studio/unsloth_studio/bin/python \
+  "$(find ~/.unsloth/studio/unsloth_studio/lib -name install_llama_prebuilt.py -print -quit)" \
+  --install-dir ~/.unsloth/llama.cpp --llama-backend cuda
+```
+
+---
+
+## 3. The two bundle-refresh helpers
+
+Each unit runs one of these in an `ExecStartPre`, so the bundle stays current across Unsloth
+releases. They call Unsloth's own installer — no patching — and are deliberately non-fatal: a missing
+network at boot must never stop the model server.
+
+```bash
+mkdir -p ~/.local/bin && cat > ~/.local/bin/update-llama-cpp-pascal.sh <<'EOF'
+#!/usr/bin/env bash
+# Keep the Pascal-capable llama.cpp bundle (GTX 1080 Ti, sm_61) current.
+set -uo pipefail
+export CUDA_VISIBLE_DEVICES=GPU-044142a9-2e56-e3b1-b0fa-6b5ab4562970
+STUDIO=/home/owner/.unsloth/studio/unsloth_studio
+PY="$STUDIO/bin/python"
+INSTALL_DIR=/home/owner/.unsloth/llama.cpp-pascal
+TIMEOUT_SECS=300
+[ -x "$PY" ] || { echo "update-llama-cpp-pascal: studio python not found; skipping"; exit 0; }
+SCRIPT=$(find "$STUDIO/lib" -name install_llama_prebuilt.py -print -quit 2>/dev/null || true)
+[ -n "${SCRIPT:-}" ] && [ -f "$SCRIPT" ] || {
+    echo "update-llama-cpp-pascal: installer not found under $STUDIO/lib; skipping"; exit 0; }
+echo "update-llama-cpp-pascal: checking $INSTALL_DIR"
+timeout "$TIMEOUT_SECS" "$PY" "$SCRIPT" --install-dir "$INSTALL_DIR" --llama-backend cuda
+rc=$?
+[ "$rc" -ne 0 ] && echo "update-llama-cpp-pascal: installer exited $rc; continuing with the existing bundle"
+exit 0
+EOF
+chmod +x ~/.local/bin/update-llama-cpp-pascal.sh
+```
+
+```bash
+cat > ~/.local/bin/update-llama-cpp-default.sh <<'EOF'
+#!/usr/bin/env bash
+# Keep the RTX 3090's llama.cpp bundle (the default ~/.unsloth/llama.cpp) current.
+set -uo pipefail
+export CUDA_VISIBLE_DEVICES=GPU-8fed8adf-de89-2c2f-3f63-2a27b8e73cd5
+STUDIO=/home/owner/.unsloth/studio/unsloth_studio
+PY="$STUDIO/bin/python"
+INSTALL_DIR=/home/owner/.unsloth/llama.cpp
+TIMEOUT_SECS=600
+[ -x "$PY" ] || { echo "update-llama-cpp-default: studio python not found; skipping"; exit 0; }
+SCRIPT=$(find "$STUDIO/lib" -name install_llama_prebuilt.py -print -quit 2>/dev/null || true)
+[ -n "${SCRIPT:-}" ] && [ -f "$SCRIPT" ] || {
+    echo "update-llama-cpp-default: installer not found under $STUDIO/lib; skipping"; exit 0; }
+echo "update-llama-cpp-default: checking $INSTALL_DIR"
+timeout "$TIMEOUT_SECS" "$PY" "$SCRIPT" --install-dir "$INSTALL_DIR" --llama-backend cuda
+rc=$?
+[ "$rc" -ne 0 ] && echo "update-llama-cpp-default: installer exited $rc; continuing with the existing bundle"
+exit 0
+EOF
+chmod +x ~/.local/bin/update-llama-cpp-default.sh
+```
+
+---
+
+## 4. Download the three models
+
+`hf` ships inside Studio's venv. Each command pulls one quant plus, where it exists, the vision
+projector. **`-mtp` files carry the speculative-decoding head** the units ask for.
+
+```bash
+HF=~/.unsloth/studio/unsloth_studio/bin/hf
+$HF download unsloth/Qwen3.5-9B-MTP-GGUF --include "Qwen3.5-9B-IQ4_NL.gguf" "mmproj-F16.gguf"
+$HF download ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF --include "Qwen3.8-27B-GSQ-RCO-IQ3_S-mtp.gguf" "mmproj-Qwen3.8-27B-BF16.gguf"
+$HF download ukisai/Swift-1.5-Qwen3.8-27B-GSQ-RCO-GGUF --include "Swift-1.5-Qwen3.8-27B-GSQ-RCO-IQ3_S-mtp.gguf"
+```
+
+**The two 27B repos are different models**, despite the shared name:
+
+| repo | what it is | vision |
+|---|---|---|
+| `ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF` | a quantization of the base `Qwen/Qwen3.8-27B` | **yes** — ships `mmproj-Qwen3.8-27B-BF16.gguf` |
+| `ukisai/Swift-1.5-Qwen3.8-27B-GSQ-RCO-GGUF` | a post-trained derivative (`reasoning`, `token-efficient`) | **no projector exists** |
+
+Only the `ISTA-DASLab` build is loaded at boot. The Swift model is downloaded so its saved
+configuration exists and it can be swapped in; it is not running.
+
+---
+
+## 5. Create the two API keys
+
+**Start Studio once so the API is up** (any of these is fine — the desktop app, or
+`~/.local/bin/unsloth studio`). The units authenticate with keys named `assistant-harness-1080ti`
+and `assistant-harness-3090`, so those names must exist.
+
+Read the desktop token Studio generated:
+
+```bash
+TOKEN=$(~/.unsloth/studio/unsloth_studio/bin/python -c "import json;print(json.load(open('/home/owner/.unsloth/studio/run/desktop_backend.json'))['token'])")
+echo "${TOKEN:0:8}..."
+```
+
+Create both keys and print them — **save the two `key` values**, they are shown only once:
+
+```bash
+for NAME in assistant-harness-1080ti assistant-harness-3090; do
+  curl -sS -X POST http://127.0.0.1:8888/api/auth/api-keys \
+    -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+    -d "{\"name\": \"$NAME\"}"; echo
+done
+```
+
+Confirm they exist:
+
+```bash
+curl -sS http://127.0.0.1:8888/api/auth/api-keys -H "Authorization: Bearer $TOKEN" | \
+  ~/.unsloth/studio/unsloth_studio/bin/python -m json.tool
+```
+
+If Studio asks for a password before this, set one first:
+
+```bash
+curl -sS -X POST http://127.0.0.1:8888/api/auth/desktop-initial-password \
+  -H "Content-Type: application/json" -d '{"new_password": "choose-something"}'
+```
+
+---
+
+## 6. The two unit files
+
+Written to `~/.unsloth/`, then copied into `/etc/systemd/system/` in step 7.
+
+**Every flag below is load-bearing**, and two of them are the difference between a model on the GPU
+and one silently on the CPU:
+
+- **`--gpu-memory-mode manual -ngl 999`** — without these, Unsloth's `auto` placement chose **zero**
+  GPU layers for the 9B and it ran on the CPU at 10.5 tok/s while `nvtop` showed no VRAM use.
+- **`--cache-type-k q8_0 --cache-type-v q8_0`** — this is what makes the context affordable. At f16
+  the 27B needs 20.82 GiB of KV cache at native context and does not fit a 24 GB card; at `q8_0` it
+  needs 13.32 GiB.
+
+```bash
+cat > ~/.unsloth/unsloth-studio-8887.service <<'EOF'
+# Unsloth Studio - Qwen3.5-9B-MTP (IQ4_NL) on the GTX 1080 Ti, port 8887.
+# Install:
+#   sudo cp /home/owner/.unsloth/unsloth-studio-8887.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now unsloth-studio-8887.service
+[Unit]
+Description=Unsloth Studio (Qwen3.5-9B IQ4_NL, GTX 1080 Ti) on port 8887
+Documentation=https://github.com/unslothai/unsloth
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=owner
+Group=owner
+WorkingDirectory=/home/owner
+
+Environment=HOME=/home/owner
+Environment=PATH=/home/owner/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Use ONLY the GTX 1080 Ti. CUDA device order is reversed vs nvidia-smi, so pin by UUID.
+Environment=CUDA_VISIBLE_DEVICES=GPU-044142a9-2e56-e3b1-b0fa-6b5ab4562970
+
+# Pascal-capable llama.cpp build (compute_50/61 PTX). The default bundle is Turing+ only.
+Environment=UNSLOTH_LLAMA_CPP_PATH=/home/owner/.unsloth/llama.cpp-pascal
+Environment=LD_LIBRARY_PATH=/home/owner/.unsloth/studio/unsloth_studio/lib/python3.13/site-packages/nvidia/cuda_runtime/lib:/home/owner/.unsloth/studio/unsloth_studio/lib/python3.13/site-packages/nvidia/cublas/lib
+
+Environment=UNSLOTH_VRAM_FRACTION=0.97
+
+ExecStartPre=-/home/owner/.local/bin/update-llama-cpp-pascal.sh
+
+# --host 0.0.0.0 exposes the API on the LAN. API-key auth still applies.
+ExecStart=/home/owner/.local/bin/unsloth studio run --model unsloth/Qwen3.5-9B-MTP-GGUF --gguf-variant IQ4_NL --max-seq-length 100000 --speculative-type mtp --spec-draft-n-max 3 --parallel 1 --reasoning on --reasoning-effort medium --gpu-memory-mode manual -ngl 999 --cache-type-k q8_0 --cache-type-v q8_0 --api-key-name assistant-harness-1080ti --host 0.0.0.0 --port 8887
+
+Restart=on-failure
+RestartSec=15
+KillMode=mixed
+TimeoutStopSec=180
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+```bash
+cat > ~/.unsloth/unsloth-studio-8888.service <<'EOF'
+# Unsloth Studio - ISTA-DASLab Qwen3.8-27B (IQ3_S-mtp) on the RTX 3090, port 8888.
+# Install:
+#   sudo cp /home/owner/.unsloth/unsloth-studio-8888.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now unsloth-studio-8888.service
+[Unit]
+Description=Unsloth Studio (ISTA-DASLab Qwen3.8-27B IQ3_S-mtp, RTX 3090) on port 8888
+Documentation=https://github.com/unslothai/unsloth
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=owner
+Group=owner
+WorkingDirectory=/home/owner
+
+Environment=HOME=/home/owner
+Environment=PATH=/home/owner/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Use ONLY the RTX 3090 (pinned by UUID; CUDA's index order is reversed vs nvidia-smi).
+Environment=CUDA_VISIBLE_DEVICES=GPU-8fed8adf-de89-2c2f-3f63-2a27b8e73cd5
+
+# The default llama.cpp bundle carries native sm_86 cubins. Deliberately NOT the Pascal build:
+# pointing the 3090 at it would force PTX JIT and cost speed.
+Environment=LD_LIBRARY_PATH=/home/owner/.unsloth/studio/unsloth_studio/lib/python3.13/site-packages/nvidia/cuda_runtime/lib:/home/owner/.unsloth/studio/unsloth_studio/lib/python3.13/site-packages/nvidia/cublas/lib:/home/owner/.unsloth/studio/unsloth_studio/lib/python3.13/site-packages/nvidia/cu13/lib
+
+ExecStartPre=-/home/owner/.local/bin/update-llama-cpp-default.sh
+
+ExecStart=/home/owner/.local/bin/unsloth studio run --model ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF --gguf-variant IQ3_S --speculative-type mtp --spec-draft-n-max 3 --parallel 1 --reasoning on --reasoning-effort medium --max-seq-length 200000 --gpu-memory-mode manual -ngl 999 --cache-type-k q8_0 --cache-type-v q8_0 --api-key-name assistant-harness-3090 --host 127.0.0.1 --port 8888
+
+Restart=on-failure
+RestartSec=15
+KillMode=mixed
+TimeoutStopSec=180
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+---
+
+## 7. Install and enable
+
+```bash
+sudo cp ~/.unsloth/unsloth-studio-8887.service ~/.unsloth/unsloth-studio-8888.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now unsloth-studio-8887.service unsloth-studio-8888.service
+```
+
+Then wait — the first start downloads nothing but does load both models, which takes a couple of
+minutes. Watch with:
+
+```bash
+systemctl status unsloth-studio-8887.service unsloth-studio-8888.service --no-pager | head -30
+```
+
+---
+
+## 8. The saved per-model configurations
+
+Studio keeps these in SQLite (`~/.unsloth/studio/studio.db`, table `app_settings`, key
+`openai_api_auto_switch_overrides`) — **not in files**. Set them through the API so the running
+service writes them correctly:
+
+```bash
+TOKEN=$(~/.unsloth/studio/unsloth_studio/bin/python -c "import json;print(json.load(open('/home/owner/.unsloth/studio/run/desktop_backend.json'))['token'])")
+```
+
+```bash
+for SPEC in \
+ 'unsloth/Qwen3.5-9B-MTP-GGUF:IQ4_NL|100000|[0]|false' \
+ 'ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF:IQ3_S|200000|[1]|false' \
+ 'ukisai/Swift-1.5-Qwen3.8-27B-GSQ-RCO-GGUF:IQ3_S|229992|[1]|true' ; do
+  IFS='|' read -r KEY CTX GPU VISION <<< "$SPEC"
+  curl -sS -X PUT http://127.0.0.1:8888/api/settings/openai-auto-switch/overrides \
+    -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+    -d "{\"model_id\": \"$KEY\", \"max_seq_length\": $CTX, \"kv_cache_dtype\": \"q8_0\",
+         \"speculative_type\": \"mtp\", \"spec_draft_n_max\": 3, \"n_parallel\": 1,
+         \"gpu_memory_mode\": \"manual\", \"gpu_layers\": 999,
+         \"gpu_ids\": $GPU, \"disable_vision\": $VISION}"; echo
+done
+```
+
+The Swift model gets the **larger** context because it has no projector to load. `disable_vision:
+true` on it is accurate rather than cosmetic — there is nothing to load.
+
+---
+
+## 9. Verify
+
+```bash
+nvidia-smi --query-compute-apps=pid,used_memory,gpu_uuid --format=csv
+nvidia-smi --query-gpu=index,name,memory.total,memory.used --format=csv,noheader
+```
+
+**Expect two compute processes, one per card**, roughly 9.5 GB on the 1080 Ti and 22 GB on the 3090.
+If only one appears, the other model fell back to the CPU — check its status for `offloaded_layers`.
+
+```bash
+TOKEN=$(~/.unsloth/studio/unsloth_studio/bin/python -c "import json;print(json.load(open('/home/owner/.unsloth/studio/run/desktop_backend.json'))['token'])")
+for PORT in 8887 8888; do
+  echo "--- $PORT ---"
+  curl -sS http://127.0.0.1:$PORT/api/inference/status -H "Authorization: Bearer $TOKEN" | \
+    ~/.unsloth/studio/unsloth_studio/bin/python -c "
+import json,sys
+s = json.load(sys.stdin)
+for k in ('active_model','context_length','cache_type_kv','is_vision','gpu_memory_mode',
+          'offloaded_layers','offload_total_layers','cpu_fallback_reason'):
+    print(f'  {k}: {json.dumps(s.get(k))}')"
+done
+```
+
+Each model should report its context, `cache_type_kv: q8_0`, all layers offloaded, and
+**`cpu_fallback_reason: null`**. The 9B reports `is_vision: true`; the 27B does too; the Swift model,
+if loaded, cannot.
+
+### Expected values
+
+| | 9B (8887) | 27B (8888) |
+|---|---|---|
+| model | `unsloth/Qwen3.5-9B-MTP-GGUF` `IQ4_NL` | `ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF` `IQ3_S` |
+| context | 100000 | 200000 |
+| cache | `q8_0` | `q8_0` |
+| vision | yes | yes |
+| VRAM | ~9.7 GB of 11.3 | ~22.3 GB of 24.6 |
+| throughput | ~71 tok/s | ~62 tok/s |
+
+**Two settings not to "fix" without measuring:**
+
+- **`--spec-draft-n-max 3`.** Studio's GPU default is 2 and Qwen's vLLM example says 2, but measured
+  on this hardware **3 beat 2 on both a predictable and a free-form prompt** (84.9 vs 74.2 tok/s, and
+  62.1 vs 57.4). The default is conservative across all models; this one accepts the third token.
+- **`--reasoning-effort medium`.** The 9B ignores it — `reasoning_effort_levels: []`, its template
+  has only an `enable_thinking` boolean, so the flag is inert rather than wrong. The 27B's template
+  supports `["low","medium","xhigh"]` and **`xhigh` is the model's own documented default**
+  (*"for complex tasks demanding thorough analysis"*), against `medium`'s *"balancing accuracy and
+  speed"*. `medium` is a deliberate choice here, not a default.
+
+
+
 #### Identifying IOMMU Groups and PCI Device Bus IDS
 
 Now let's just verify that our host OS ready for virtualization by confirming IMMOU support, and AMD-Vi features are enabled.
